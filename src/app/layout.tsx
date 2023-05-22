@@ -3,7 +3,7 @@ import './globals.css'
 
 export const metadata = {
   title: 'Sixian Li',
-  description: 'Sixian\'s floating thoughts',
+  description: "Sixian's floating thoughts",
 }
 
 export default function RootLayout({

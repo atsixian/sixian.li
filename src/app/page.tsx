@@ -7,13 +7,33 @@ function Sidebar() {
   return (
     <nav className="w-full max-w-[58ch] p-6 md:w-auto md:p-0">
       <ul className="flex flex-row items-center gap-3 md:flex-col">
-        <li><NextLink href="/"><div className="h-8 w-8 rounded-full bg-green-700 md:h-14 md:w-14"></div></NextLink></li>
-        <li><NextLink href="/writing">写作</NextLink></li>
-        <li><NextLink href="/talk">演讲</NextLink></li>
-        <div className='grow'></div>
-        <li><NextLink href="#"><Twitter /></NextLink></li>
-        <li><NextLink href="#"><Youtube /></NextLink></li>
-        <li><NextLink href="#"><Github /></NextLink></li>
+        <li>
+          <NextLink href="/">
+            <div className="h-8 w-8 rounded-full bg-green-700 md:h-14 md:w-14"></div>
+          </NextLink>
+        </li>
+        <li>
+          <NextLink href="/writing">写作</NextLink>
+        </li>
+        <li>
+          <NextLink href="/talk">演讲</NextLink>
+        </li>
+        <div className="grow"></div>
+        <li>
+          <NextLink href="#">
+            <Twitter />
+          </NextLink>
+        </li>
+        <li>
+          <NextLink href="#">
+            <Youtube />
+          </NextLink>
+        </li>
+        <li>
+          <NextLink href="#">
+            <Github />
+          </NextLink>
+        </li>
       </ul>
     </nav>
   )

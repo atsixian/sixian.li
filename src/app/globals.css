@@ -17,15 +17,15 @@
 }
 
 a {
-  @apply underline
+  @apply underline;
 }
 
 a:hover {
-  @apply text-blue-800
+  @apply text-blue-800;
 }
 
 a:visited {
-  @apply text-purple-600
+  @apply text-purple-600;
 }
 /* body {
   color: rgb(var(--foreground-rgb));
