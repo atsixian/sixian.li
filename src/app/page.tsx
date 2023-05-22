@@ -42,7 +42,7 @@ function Sidebar() {
 function MainContent() {
   return (
     <div className="max-w-[58ch] px-6 text-neutral-800">
-      <article>
+      <article className="prose prose-h1:mb-5 prose-h2:my-4 prose-p:my-4">
         <Me />
       </article>
     </div>
