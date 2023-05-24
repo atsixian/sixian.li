@@ -19,6 +19,19 @@ module.exports = {
         sans: ['var(--font-open-sans)', ...defaultTheme.fontFamily.sans],
         mono: ['var(--font-roboto-mono)', ...defaultTheme.fontFamily.mono],
       },
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            a: {
+              color: 'inherit',
+
+              '&:hover': {
+                color: theme('colors.zinc[800]'),
+              },
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [require('@tailwindcss/typography')],

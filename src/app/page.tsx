@@ -6,7 +6,7 @@ import Me from './me.mdx'
 function Sidebar() {
   return (
     <nav className="w-full max-w-[58ch] p-6 md:w-auto md:p-0">
-      <ul className="flex flex-row items-center gap-3 md:flex-col">
+      <ul className="flex flex-row items-center gap-3 text-zinc-800 md:flex-col">
         <li>
           <NextLink href="/">
             <div className="h-8 w-8 rounded-full bg-green-700 md:h-14 md:w-14"></div>
@@ -41,8 +41,8 @@ function Sidebar() {
 
 function MainContent() {
   return (
-    <div className="max-w-[58ch] px-6 text-neutral-800">
-      <article className="prose prose-h1:mb-5 prose-h2:my-4 prose-p:my-4">
+    <div className="max-w-[58ch] px-6">
+      <article className="prose prose-zinc prose-h1:mb-5">
         <Me />
       </article>
     </div>

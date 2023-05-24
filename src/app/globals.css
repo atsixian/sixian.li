@@ -16,23 +16,14 @@
   }
 }
 
-a {
-  @apply underline;
+article a {
+  position: relative;
+  text-decoration-color: theme(colors.zinc.500) !important;
+  text-underline-offset: 0.2em;
+  transition: all 400ms;
 }
-
-a:hover {
-  @apply text-blue-800;
+article a:hover {
+  text-decoration-color: theme(colors.zinc.800) !important;
+  text-underline-offset: 0.25em;
+  transition: all 250ms;
 }
-
-a:visited {
-  @apply text-purple-600;
-}
-/* body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-} */
