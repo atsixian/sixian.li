@@ -20,10 +20,10 @@ article a {
   position: relative;
   text-decoration-color: theme(colors.zinc.500) !important;
   text-underline-offset: 0.2em;
-  transition: all 400ms;
+  transition: text-underline-offset 300ms;
 }
 article a:hover {
   text-decoration-color: theme(colors.zinc.800) !important;
   text-underline-offset: 0.25em;
-  transition: all 250ms;
+  transition: text-underline-offset 200ms;
 }
