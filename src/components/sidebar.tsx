@@ -17,9 +17,12 @@ const NAV_LINKS: Link[] = [
 ]
 
 const SOCIAL_LINKS: Link[] = [
-  { node: <Twitter />, href: '#' },
-  { node: <Youtube />, href: '#' },
-  { node: <Github />, href: '#' },
+  { node: <Twitter />, href: 'https://twitter.com/noworkforsixian' },
+  {
+    node: <Youtube />,
+    href: 'https://www.youtube.com/channel/UC5md_sIlSGdcD_Zbsk9rKEA',
+  },
+  { node: <Github />, href: 'https://github.com/Deerhound579' },
 ]
 
 export function Sidebar() {
@@ -30,12 +33,12 @@ export function Sidebar() {
   return (
     <nav className="w-full max-w-[58ch] p-6 md:w-auto md:p-0">
       <ul className="flex flex-row justify-between text-zinc-700 md:flex-col md:gap-4">
-        <li>
-          <NextLink href="/">
-            <Moon />
-          </NextLink>
-        </li>
         <div className="group flex flex-row items-center gap-3 md:flex-col">
+          <li>
+            <NextLink href="/">
+              <Moon />
+            </NextLink>
+          </li>
           {NAV_LINKS.map(link => (
             <li
               key={link.href}
