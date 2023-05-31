@@ -44,7 +44,10 @@ export function Sidebar() {
               key={link.href}
               className={clsx(
                 linkStyle,
-                currentRoute === link.href && 'font-semibold'
+                currentRoute !== '/' &&
+                  (currentRoute === link.href
+                    ? 'font-bold'
+                    : '[&:not(:hover)]:opacity-30')
               )}
             >
               <NextLink href={link.href}>{link.node}</NextLink>
