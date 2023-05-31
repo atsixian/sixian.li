@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Github, Twitter, Youtube } from 'lucide-react'
 import NextLink from 'next/link'
 import Me from './me.mdx'
+import { Moon } from './moon'
 
 function Sidebar() {
   return (
@@ -9,7 +10,7 @@ function Sidebar() {
       <ul className="flex flex-row items-center gap-3 text-zinc-800 md:flex-col">
         <li>
           <NextLink href="/">
-            <div className="h-8 w-8 rounded-full bg-green-700 md:h-14 md:w-14"></div>
+            <Moon />
           </NextLink>
         </li>
         <li>
