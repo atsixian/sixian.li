@@ -1,5 +1,8 @@
-import { Twitter, Youtube, Github } from 'lucide-react'
+'use client'
+import clsx from 'clsx'
+import { Github, Twitter, Youtube } from 'lucide-react'
 import NextLink from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Moon } from './moon'
 
 type Link = {
@@ -20,8 +23,10 @@ const SOCIAL_LINKS: Link[] = [
 ]
 
 export function Sidebar() {
+  const currentRoute = usePathname()
+
   const linkStyle =
-    'transition-all duration-300 hover:text-zinc-900 hover:duration-200 group-hover:[&:not(:hover)]:opacity-30'
+    'transition-all duration-300 hover:text-zinc-900 hover:font-semibold hover:duration-200 group-hover:[&:not(:hover)]:opacity-30'
   return (
     <nav className="w-full max-w-[58ch] p-6 md:w-auto md:p-0">
       <ul className="flex flex-row justify-between text-zinc-700 md:flex-col md:gap-4">
@@ -32,7 +37,13 @@ export function Sidebar() {
         </li>
         <div className="group flex flex-row items-center gap-3 md:flex-col">
           {NAV_LINKS.map(link => (
-            <li key={link.href} className={linkStyle}>
+            <li
+              key={link.href}
+              className={clsx(
+                linkStyle,
+                currentRoute === link.href && 'font-semibold'
+              )}
+            >
               <NextLink href={link.href}>{link.node}</NextLink>
             </li>
           ))}
