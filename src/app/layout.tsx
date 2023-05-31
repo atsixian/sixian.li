@@ -1,6 +1,6 @@
 import { open_sans, roboto_mono } from './fonts'
 import './globals.css'
-import { Sidebar } from './sidebar'
+import { Sidebar } from '../components/sidebar'
 
 export const metadata = {
   title: 'Sixian Li',
