@@ -4,37 +4,37 @@ import NextLink from 'next/link'
 import Me from './me.mdx'
 import { Moon } from './moon'
 
+type NavLink = {
+  node: React.ReactNode
+  href: string
+}
+
+const NAV_LINKS: NavLink[] = [
+  { node: '写作', href: '/writing' },
+  { node: '演讲', href: '/talk' },
+  { node: '视觉', href: '/visuals' },
+  { node: <Twitter />, href: '#' },
+  { node: <Youtube />, href: '#' },
+  { node: <Github />, href: '#' },
+]
+
 function Sidebar() {
   return (
-    <nav className="w-full max-w-[58ch] p-6 md:w-auto md:p-0">
-      <ul className="flex flex-row items-center gap-3 text-zinc-800 md:flex-col">
+    <nav className="h-full w-full max-w-[58ch] p-6 md:w-auto md:p-0">
+      <ul className="flex flex-row items-center gap-3 text-zinc-700 md:flex-col">
         <li>
           <NextLink href="/">
             <Moon />
           </NextLink>
         </li>
-        <li>
-          <NextLink href="/writing">写作</NextLink>
-        </li>
-        <li>
-          <NextLink href="/talk">演讲</NextLink>
-        </li>
-        <div className="grow"></div>
-        <li>
-          <NextLink href="#">
-            <Twitter />
-          </NextLink>
-        </li>
-        <li>
-          <NextLink href="#">
-            <Youtube />
-          </NextLink>
-        </li>
-        <li>
-          <NextLink href="#">
-            <Github />
-          </NextLink>
-        </li>
+        {NAV_LINKS.map(link => (
+          <li
+            key={link.href}
+            className="transition-colors duration-300 hover:text-zinc-900 hover:duration-200"
+          >
+            <NextLink href={link.href}>{link.node}</NextLink>
+          </li>
+        ))}
       </ul>
     </nav>
   )
@@ -52,7 +52,7 @@ function MainContent() {
 
 export default function Home() {
   return (
-    <div className="flex max-h-fit flex-col items-center justify-start md:mt-32 md:flex-row md:items-start md:justify-center md:gap-6">
+    <div className="flex max-h-fit flex-col items-center justify-start md:flex-row md:items-start md:justify-center md:gap-6 md:pt-32">
       <Sidebar />
       <MainContent />
     </div>
