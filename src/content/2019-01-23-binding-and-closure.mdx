@@ -1,0 +1,106 @@
+---
+title: Binding & Closure
+date: 2019-01-23
+tags: ['Functional Programming']
+description: Binding != Assignment
+---
+
+## Binding & Closure
+
+_Binding_ created a `(name, value)` pair. Here, values can also be functions.
+
+_Declarations_ create bindings.
+
+```ocaml
+let x = 3 in x+2 ;;
+```
+
+- `let`: declaration
+- `in`: scope
+- **NOTE**: Do not confuse this with assignment.
+
+### 3 components of closure
+
+1. parameters
+2. body
+3. pointer to the environment when it is defined (**static binding**, **lexical scoping**)
+
+NOTE: Environment can only be added, so there are layers. The pointer is pointing to the correct environment. A layer will be swept by garbage collection when there is no pointer points to it.
+
+#### [Side note](https://beginnersbook.com/2013/04/java-static-dynamic-binding/): static binding and dynamic binding in Java:
+
+> - Static binding
+>
+>   ...So whenever a binding of static, private and final methods happen, **type of the class** is determined by the compiler at **compile time** (**not** determined by type of the object) and the binding happens then and there.
+>
+> - Dynamic binding
+>
+>   The **type of the object** is determined at the runtime(by the `new someconstructor()` keyword).
+>
+> - Overload and Override
+>
+>   The binding of [overloaded methods](https://beginnersbook.com/2013/05/method-overloading/) is static and the binding of overridden methods is dynamic.
+
+---
+
+### Binding vs. Assignment
+
+In an imperative language, like Java, when we assign a value to a variable, we make an analogy between our `variable` and `box`. A variable itself is a container, and it holds some value. However, when we **bind** a name to a variable, we are attaching a **label** on that **value**.
+
+Consider the code snippet below.
+
+`y = x + 1` is not closed on the name `x`. It is **closed** on the value **3** which was bound to `x`. So `y` will never change with `x`.
+
+A really good explanation from [stack overflow](https://stackoverflow.com/questions/48100145/binding-vs-assignment):
+
+> You can think of binding as a label on a suitcase, and assignment as a suitcase.
+
+Now, let's look at this example:
+
+```ocaml
+let x = 3 in
+	let f = fun x -> x in
+ 	let x = 99 in
+ 	f x
+```
+
+**Layers**
+
+`x | 99`
+
+`f | (3 components)` parameter: x | body: x | pointer to `x = 3`
+
+`x | 3`
+
+When we evaluate `f x`:
+
+1.  `f` is a closure, should be a function
+2.  Now its parameter is x! Let's look for `x`
+3.  Ok, `x` is 99. Let's evaluate. At this point, the layer `x | 99` will go along with the pointer to the layer `x | 3`. **IMPORTANT: 3 is masked because 99 is on the top layer.**
+
+```ocaml
+let x = 3 in (* binding *)
+	let y = x + 1 in
+	let x = 2 in
+	x + y
+```
+
+When you evaluate this, `x` is not built-in. It is stored in a structure called <u>environment</u>. So the compiler will look for what is `x`.
+
+`x | 3` ---> base environment
+
+`x + 2` to be evaluated. `x` is found in the top layer.
+
+**Layers**
+
+`x | 2`
+
+`y | 4`
+
+`x | 3`
+
+|||BASE ENV|||
+
+**<u>NOTE</u>**: Never put <u>bindings</u> in the value part. It looks for `x` in the environment, and put the value of `x` in `x+1`.
+
+Here, `x-3` is **masked, but it is still there**. During the evaluation, it picks the `x` in the top layer.

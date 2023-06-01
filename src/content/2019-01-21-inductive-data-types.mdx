@@ -1,0 +1,96 @@
+---
+title: Inductive Data Types
+date: 2019-01-21
+tags: ['Functional Programming']
+description: Tree as an example
+---
+
+Lecture notes for COMP302.
+
+### Lists as inductive structures
+
+- NOTE: Induction works if and only if the system has a well-founded order.
+
+### Inductive definitions of data types
+
+Let `[ ]` is a list. If you have a list, say `l`, and an item, say`i`, then `i::l` is also a list.
+`List0 = [ ]`
+`List1 = [1], [2],...,[ ]`
+`List2 = [1; 1], [1; 2],...,[4; 1],...`
+The entire collection LIST = union_n LIST_n, an infinite set. However, the description is short, concise, and finite.
+This is a built-in type. There are functions like `map, filter` in this module.
+
+### How do I define my own inductive types?
+
+Lists are linear data types, tail recursion works well for linear data types.
+
+#### Trees
+
+Trees are **not built-in**. Here we only talked about binary trees.
+
+- Inductive definition:
+  `EMPTY` is a tree.
+  If `t1, t2` are trees, and `i` is an item. Then `i(t1, t2)` is a tree (NOT linear).
+
+- How to code a `Tree` in OCaml
+  We have user-defined inductive types.
+  `type 'a tree = Empty | Node of 'a tree * 'a * 'a tree`
+
+  1. `'a means:`Polymorphic binary trees. `'a` can be instantiated with any type: ints, strings...
+
+     You don't have to declare types. Type inference comes to help.
+
+     `let max (n, m) = if n < m then m else n;;`
+
+  2. `Node`: constructor function. Always start with capital letters.
+
+  - Examples:
+
+    ```ocaml
+    let t1 = Node(Empty, 0, (Node(Empty, 1, Empty)));;
+
+    (* height *)
+    let rec height (t: 'a tree) =
+    	match t with
+    	| Empty -> 0
+    	| Node (l,_,r) -> 1 + max(height l, height r);;
+
+    (* sumNodes *)
+    (* showInt*)
+    (* inOrder *)
+    (* (inOrder l); (showInt n); (inOrder r);;
+    	The ; suggests sequence. It's not pure.
+    *)
+    (* flatten *)
+    ```
+
+- Expression trees
+
+  `Const, Var, Plus, Times`
+
+  `type binding`: char \* int
+
+  `type env = binding list`
+
+  `let rho: env = [('x', 11); ('y', 7); ('z', 2)]`
+
+  What if there's no such names?
+
+  - OPTION TYPE, a new type constructor. If `t` is a type, then `t option` is another type. Allows you to optionally return a `NOne` value.
+
+  - EX. 1729 is an integer.
+
+    None is an integer option.
+
+    Some 1729 is an integer option.
+
+    Not returning int value, return `int option`.
+
+```ocaml
+let rec eval (e: exptree) (rho: env) =
+	match e with
+	| Const n -> n
+	| Var v -> (match (lookup v rho)) with
+				| None -> raise NotFound
+				| Some r -> r
+```

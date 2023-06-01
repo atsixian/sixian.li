@@ -17,18 +17,21 @@
 }
 
 .prose h2 a,
-.prose h3 a {
+.prose h3 a,
+.prose h4 a {
   @apply no-underline;
 }
 
 .prose h2 a::before,
-.prose h3 a::before {
+.prose h3 a::before,
+.prose h4 a::before {
   @apply absolute -left-4 text-zinc-300 opacity-0 transition-opacity;
   content: '#';
 }
 
 .prose h2 a:hover::before,
-.prose h3 a:hover::before {
+.prose h3 a:hover::before,
+.prose h4 a:hover::before {
   @apply opacity-100;
 }
 

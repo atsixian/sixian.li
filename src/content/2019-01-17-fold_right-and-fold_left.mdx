@@ -1,0 +1,74 @@
+---
+title: fold_right and fold_left
+date: 2019-01-17
+tags: ['Functional Programming']
+description: fold in OCaml
+---
+
+credits: textbook from Cornell's [cs 3110](https://www.cs.cornell.edu/courses/cs3110/2019sp/textbook/hop/fold_left.html).
+
+Some useful explanations for `fold` functions in OCaml.
+
+---
+
+#### fold_right
+
+Let's start with two functions: `sum` and `concat`
+
+```ocaml
+let rec sum = function
+| [] -> 0
+| h::t -> h + sum t
+
+let rec concat = function
+| [] -> ""
+| h::t -> h ^ concat t
+```
+
+We notice that these two functions are very similar. The only differences are the base case value (`0` and `""`) and the operator (`+` and `^`).
+
+We love descriptionions. So we rewrite these two functions as
+
+```ocaml
+let rec combine op init = function
+| [] -> init
+| h::t -> op h (combine op init t)
+```
+
+Why is it called fold_right?
+
+Because the associativity is from right to left like this:
+
+`(a+(b+(c+0)))`
+
+#### fold_left
+
+Similarly, the associativity, as its name suggests, is `((a+0)+b)+c)`. It is actually a handy function for tail recursion.
+
+It is implemented like this:
+
+`fold_left op acc(base case) list`
+
+> In `fold_right`, you will notice that the value passed as the `init`argument is the same for every recursive invocation of `fold_right`: it's passed all the way down to where it's needed, at the right-most element of the list, then used there exactly once. But in `fold_left`, you will notice that at each recursive invocation, the value passed as the argument `acc` can be different.
+
+NOTE: In `fold_left`, its type is:
+
+`('a -> 'b -> 'a) -> 'a -> 'b list -> 'a = <fun>`
+In the example `rev` below, the function is `fun l a` instead of `fun a l`
+
+#### Examples
+
+```ocaml
+(* reverse a list *)
+let rev lst = fold_left (fun l a -> a::l) [] lst
+
+(* calculate the length of a list*)
+let len lst = fold_left (fun a _ -> a+1) 0 lst
+
+(* map in fold*)
+let mapp f lst = fold_right (fun e_of_l init -> (f e_of_l)::init) lst [] ;;
+
+(* filter in fold*)
+let filterr f lst = fold_right (fun e_of_l init -> if (f e_of_l) then e_of_l::init else init) lst [] ;;
+
+```

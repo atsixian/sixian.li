@@ -9,7 +9,8 @@ import rehypePrettyCode from 'rehype-pretty-code'
 const computedFields = {
   slug: {
     type: 'string',
-    resolve: doc => doc.slug ?? doc._raw.flattenedPath,
+    resolve: doc =>
+      doc.slug ?? doc._raw.flattenedPath.replace(/^\d{4}-\d{2}-\d{2}-/, ''),
   },
 }
 
@@ -20,6 +21,7 @@ export const Article = defineDocumentType(() => ({
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },
+    description: { type: 'string', required: false },
   },
   computedFields,
 }))

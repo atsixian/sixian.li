@@ -1,0 +1,69 @@
+---
+date: 2020-04-05
+title: Longest Increasing Subsequence and Patience Game(Part2)
+tags:
+  - algorithm
+description: Implementation of the O(nlogn) solution
+---
+
+This part covers the actual implementation of the idea mentioned in [Part1](/writing/longest-increasing-subsequence-and-patience-game-1). I assume you’ve read it, and I’ll use claims proved in that part.
+
+If you understand how the greedy algorithm works for Patience, the implementation is just simulating the game play.
+
+## Goal
+
+Remember, the algorithm puts the new card on the leftmost pile possible, and the length of the LIS is the total number of piles at the end of the game.
+
+So the problem boils down to find out $\#\text{piles}$.
+
+## Let’s play the game
+
+### 1. Do we need to store every card in a pile?
+
+When we’re looking for a valid pile, we only compare the new card $c$ and the top card $t$ of a pile. If $c \leq t$, we put $c$ on the pile, and it becomes the new top card. So there’s no need to store every card.
+
+### 2. How do we find the first valid pile?
+
+Of course, we can look at every pile from left to right, that would be $O(n)$, and the total complexity will be $O(n^2)$. There’s an extra piece of information about those top cards: they form an increasing subsequence, i.e., they’re sorted.
+
+How do we define “leftmost”? It is the first pile such that $ \text{new card} \leq \text{top card}$, so we have $\text{new card} \gt \text{top card of the last pile}$.
+
+If $\text{new card} \gt \text{some top card}$, $\text{new card}$ is larger than anything to the left of that pile, so we can skip those elements. Yes, that’s binary search, the $logn$ part in $O(nlogn)$.
+
+## Code
+
+```python {6,10-11,13,15-16}
+def LIS(nums):
+
+    piles = []
+
+    for n in nums:
+        left, right = 0, len(piles)
+
+        while left < right:
+            mid = left + (right - left) // 2
+            if piles[mid] < n:
+                left = mid + 1
+            else:
+                right = mid
+
+        if left == len(piles):
+            piles.append(n)
+        else:
+            piles[left] = n
+
+    return len(piles)
+
+```
+
+**Line 6:** `right` is `len(piles)` instead of the usual `len(piles) - 1` because `n` can be larger than any top card in current piles, then it should be placed in a new pile.
+
+**Line 10-11:** If `piles[mid] < n`, `mid` is definitely not the pile where `n` is placed, so we can exclude it.
+
+**Line 13:** In this branch, `n <= piles[mid]`, `mid` may be the pile we're looking for, so we can't exclude it. But we're not sure if it's the leftmost position, so we keep going.
+
+**Line 15-16:** If the leftmost valid pile doesn't exist yet, it means `n` is larger than all top cards, so we create a new pile for it, `len(piles)` will be incremented by 1 at the same time.
+
+---
+
+That's all for this algorithm. Knowing why an algorithm works is always more important than memorizing the implementation. Proving its correctness is a very good way to learn.

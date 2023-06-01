@@ -25,10 +25,11 @@ export async function generateMetadata({
     return
   }
 
-  const { title, date, slug } = article
+  const { title, description } = article
 
   return {
     title,
+    description,
   }
 }
 

@@ -1,0 +1,150 @@
+---
+title: Ubuntu 18.04 Remap Mouse Buttons
+date: 2019-08-12
+tags:
+  - tips
+description: Remap buttons on a *wireless* mouse on Ubuntu 18.04
+---
+
+## Goals:
+
+1. Write a script to remap mouse buttons
+2. Run the script when the wireless mouse is connected
+
+---
+
+This is my mouse:
+
+![mouse](https://cdn.jsdelivr.net/gh/Deerhound579/image-hosting/img/mouse.jpg)
+
+The default right-click is the bottom right button, but I would like to use the top right button instead.
+
+## Remap mouse buttons
+
+First, `xinput` gives the id and name assigned to my mouse. Then, `xinput list 18(device id)` gives information about all buttons on my mouse.
+
+```shell
+$ xinput
+...
+⎜   ↳ Expert Wireless TB Mouse                	id=18	[slave  pointer  (2)]
+
+$ xinput list 18
+Expert Wireless TB Mouse                	id=18	[slave  pointer  (2)]
+	Reporting 7 classes:
+		Class originated from: 18. Type: XIButtonClass
+		Buttons supported: 9
+		Button labels: "Button Left" "Button Middle" "Button Right" "Button Wheel Up" "Button Wheel Down" "Button Horiz Wheel Left" "Button Horiz Wheel Right" "Button Side" "Button Extra"
+```
+
+However, the labels are quite confusing. To find out which button is pressed, run `xinput test 18(device id)` and press buttons you want to switch.
+
+```bash
+$ xinput test 18
+button press   8
+button release 8
+button press   3
+button release 3
+```
+
+This is much clearer than the "Button Side". To remap buttons, simply use `xinput set-button-map $mouse_id 1 2 8 4 5 6 7 3 9` which switches `3` and `8`.
+
+---
+
+**Problem:** When I restart the laptop, everything goes back to the default settings. With the help of [StackOverflow](https://askubuntu.com/questions/492744/how-do-i-automatically-remap-buttons-on-my-mouse-at-startup), I created a script called `remap_mouse_buttons.sh`:
+
+```bash
+mouse_id=$(xinput list | grep "Expert Wireless TB Mouse" | sed 's/^.*id=\([0-9]*\)[ \t].*/\1/')
+xinput set-button-map $mouse_id 1 2 8 4 5 6 7 3 9
+```
+
+I added this to the Start Up Applications. Unfortunately, this didn't work because if I didn't connect the mouse when the computer started, the system wouldn't find the device let alone remap buttons.
+
+_NOTE:_ I highly recommend you keep track of the error message by changing the second line to:
+
+```bash
+xinput set-button-map $mouse_id  1 2 8 4 5 6 7 3 9 2>&1 | sudo tee /home/yourusername/error.txt
+```
+
+Additional resources:
+
+1. [Details on 2>&1](https://stackoverflow.com/questions/818255/in-the-shell-what-does-21-mean)
+
+2. [How to avoid "Permission denied" when redirecting](https://stackoverflow.com/questions/82256/how-do-i-use-sudo-to-redirect-output-to-a-location-i-dont-have-permission-to-wr)
+
+## Run the script when the mouse is connected
+
+What I should do is executing the script when the mouse is connected via Bluetooth. [udev](https://wiki.debian.org/udev) rules are perfect for this job.
+
+This [tutorial](https://linuxconfig.org/tutorial-on-how-to-write-basic-udev-rules-in-linux) on how to write basic udev rules helped me a lot.
+
+```bash
+# Where custom made rules are
+$ cd /etc/udev/rules.d/
+# The naming convention is xx-description.rules. "xx" is a number, and the larger it is, the later it will be executed
+$ sudo touch 88-remapmouse.rules
+```
+
+Before writing rules, we need to gather information about the device. Run `udevadm monitor` and reconnect the device to get its path. Then, run `udevadm info` to get detailed information.
+
+```bash
+$udevadm monitor
+monitor will print the received events for:
+UDEV - the event which udev sends out after rule processing
+KERNEL - the kernel uevent
+
+KERNEL[8572.460135] remove   /devices/pci0000:00/0000:00:14.0/usb1/1-7/1-7:1.0/bluetooth/hci0/hci0:3585 (bluetooth)
+KERNEL[8572.465756] add      /devices/pci0000:00/0000:00:14.0/usb1/1-7/1-7:1.0/bluetooth/hci0/hci0:3585 (bluetooth)
+UDEV  [8572.525910] remove   /devices/pci0000:00/0000:00:14.0/usb1/1-7/1-7:1.0/bluetooth/hci0/hci0:3585 (bluetooth)
+UDEV  [8572.582738] add      /devices/pci0000:00/0000:00:14.0/usb1/1-7/1-7:1.0/bluetooth/hci0/hci0:3585 (bluetooth)
+
+# The output has been truncated
+$ udevadm info -ap /devices/pci0000:00/00:00:14.0/usb1/1-7/1-7:1.0/bluetooth/hci0/hci0:3585
+...
+looking at device '/devices/pci0000:00/0000:00:14.0/usb1/1-7/1-7:1.0/bluetooth/hci0/hci0:3585':
+    KERNEL=="hci0:3585"
+    SUBSYSTEM=="bluetooth"
+    DRIVER==""
+	...
+looking at parent device '/devices/pci0000:00/0000:00:14.0/usb1/1-7':
+    KERNELS=="1-7"
+    SUBSYSTEMS=="usb"
+    DRIVERS=="usb"
+	...
+    ATTRS{idProduct}=="0a2b"
+    ATTRS{idVendor}=="8087"
+    ...
+```
+
+Now we have enough info to write the `88-remapmouse.rules`:
+
+```
+ACTION=="add",\
+SUBSYSTEMS=="usb",\
+ATTRS{idProduct}=="0a2b",\
+ATTRS{idVendor}=="8087",\
+ENV{DISPLAY}=":0.0",\
+ENV{XAUTHORITY}="/run/user/1000/gdm/Xauthority",\
+RUN+="/home/lisixian/remap_mouse.sh"
+```
+
+`==` match the value
+
+`=` assign a value (overwrite)
+
+`+=` add another value
+
+The script seems daunting, but what it says is simply "When the device with matching values is detected(connected), run `/home/lisixian/remap_mouse.sh` (the script in the first section)".
+
+_NOTE:_ `ENV{DISPLAY}=":0.0"` and `ENV{XAUTHORITY}="/run/user/1000/gdm/Xauthority` are important. From the tutorial:
+
+> Those variables are essential when interacting with the X server programmatically, to setup some needed information: with the `DISPLAY` variable, we specify on what machine the server is running, what display and what screen we are referencing, and with `XAUTHORITY` we provide the path to the file which contains Xorg authentication and authorization information.
+
+I got `Cannot connect to X server` error without these two lines.
+
+Finally!
+
+```bash
+udevadm control --reload # reload all rules
+```
+
+Now, disconnect your device and connect again to see the results.

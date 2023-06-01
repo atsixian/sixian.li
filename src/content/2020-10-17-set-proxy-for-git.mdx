@@ -1,0 +1,84 @@
+---
+date: 2020-10-17
+title: 为 Git 设置代理
+tags:
+  - tips
+description: 摆脱龟速 git clone
+---
+
+最近开始刷 MIT 6.S081，`git clone`实在是龟速，上网查了为各个协议设置代理的方法，在此记录。
+
+## 前提
+
+请确认本地已经打开代理，切换到「全局模式」。找到监听的端口，比如我使用的客户端是 ClashX，可以点击`Copy shell command`来确认端口：
+
+```shell
+# 得到的结果
+export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7891
+```
+
+## 最简单的解决方案
+
+使用 [proxychains](https://github.com/rofl0r/proxychains-ng)（现在新版本是叫`proxychains-ng`）一站式解决所有协议的配置。
+
+```shell
+$ brew install proxychains-ng
+$ proxychains4 git clone xxx
+```
+
+## http://
+
+为防止 clone 国内仓库速度慢，我们只为 GitHub 设置代理：
+
+```shell
+$ git config --global http.http://github.com.proxy https://127.0.0.1:7890
+$ git config --global http.https://github.com.proxy https://127.0.0.1:7890
+# 如果之后 clone 报错可以加上以下两行
+$ git config --global http.sslverify false
+$ git config --global remote.origin.proxy 127.0.0.1:7890
+```
+
+取消设置：
+
+```shell
+$ git config --global --unset http.proxy
+$ git config --global --unset https.proxy
+```
+
+## ssh:// (git@)
+
+这需要修改`~/.ssh/config`（如果没有则新建）。将以下代码加入`config`文件，填入你的`ip`和`port`：
+
+```
+Host github.com
+   HostName github.com
+   User git
+   ProxyCommand nc -v -x <your_proxy_host>:<your_proxy_host> %h %p
+```
+
+## git://
+
+对于 GitHub ，可以利用[insteadOf](https://stackoverflow.com/a/12752300/9407207) 来快速实现：
+
+```
+git config --global url.https://github.com/.insteadOf git://github.com/
+```
+
+但是，对于 MIT 给出的仓库地址，`git://g.csail.mit.edu/xv6-labs-2020`，这个是行不通的。所以我们需要[修改`core.gitProxy`](https://stackoverflow.com/a/32512014/9407207)。先写一个`git-proxy`的脚本，并把它放到`PATH`能找到的地方，再进行修改。
+
+```shell
+$ echo "nc -x <your_proxy_host>:<your_proxy_host> $1 $2" > /usr/local/bin/git-proxy
+$ git config --global --add core.gitProxy git-proxy
+```
+
+大功告成！
+
+## 参考资料
+
+1. [proxychains 相关](https://segmentfault.com/q/1010000000118837)
+
+2. [macos 给 git(github) 设置代理（http/ssh）](https://gist.github.com/chuyik/02d0d37a49edc162546441092efae6a1)
+
+3. [git clone 一个 github 上的仓库，太慢，经常连接失败，但是 github 官网流畅访问，为什么？ - 汪小九的回答 - 知乎](https://www.zhihu.com/question/27159393/answer/141047266)
+
+4. [stackoverflow](https://stackoverflow.com/questions/5860888/git-through-proxy)

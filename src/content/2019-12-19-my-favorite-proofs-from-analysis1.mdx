@@ -1,0 +1,148 @@
+---
+title: My Favorite Proofs from Analysis1
+date: 2019-12-19 16:33:00
+tags:
+  - math
+description: Elegant proofs with intuitions
+---
+
+I've encountered a lot of proofs from [MATH254](https://www.mcgill.ca/study/2019-2020/courses/math-254), an introductory real analysis course. From my experience, most of the knowledge vanished the moment I walked out of the final exam room. But some proofs are just so elegant that forgetting them pains me.
+
+This post is a collection of the neatest ones from my perspective. Besides reconstructing proofs, I also try to explain them in my own words to help you and my future self follow the line of thought.
+
+## Triangle inequality (In $\mathbb{R}^2$)
+
+Probably the most important inequality in this course.
+
+$|x+y|\leq|x|+|y|$
+
+### Proof
+
+First, we prove the claim: $ |x|\leq a \iff -a\leq x\leq a$
+
+$$
+\text{Here I only prove } ``\Rightarrow" \text{direction.}\\ \text{The other direction can be easily obtained by "opening" the absolute value.}\\
+\begin{aligned}
+&\text{Case1. } x\geq 0 \\
+&x = |x|\leq a, x\geq0 \Rightarrow a\geq0\Rightarrow -a \leq 0\leq x\\
+\Rightarrow &-a \leq x \leq a\\
+&\text{Case2. } x\lt 0 \\
+& -x =|x|\leq a \Rightarrow x\geq-a\Rightarrow x<0\leq a\\
+\Rightarrow &-a \leq x \leq a\\
+\end{aligned}\\
+$$
+
+For the triangle inequality:
+
+$$
+\begin{aligned}
+|x|&\leq |x| \Rightarrow -|x| \leq x\leq|x|\\
+|y|&\leq |y| \Rightarrow -|y| \leq y\leq|y|\\
+-|x|-|y|&\leq x+y \leq|x|+|y|\\
+\Rightarrow -(|x|+|y|)&\leq x+y \leq|x|+|y|\\
+\Rightarrow |x+y| &\leq |x|+|y| \text{ by the claim above} \ \square
+\end{aligned}
+$$
+
+### Notes
+
+The very obvious $|x|\leq|x|$ may be hard to come up with. When you have an equality, think about inequalities it may give you. The generalization for $\mathbb{R^n}$ can be proved by induction.
+
+## $\mathbb{Q}$ is dense in $\mathbb{R}$
+
+That is, for any $x, y \in \mathbb{R}, x<y, \exists q \in \mathbb{Q}$ such that $x < q < y$ . Equivalently, there are infinite rational numbers between any two real numbers.
+
+### Proof
+
+Let $n\in\mathbb{N},0<\frac{1}{n} < y-x \iff n>\frac{1}{y-x}$ by the [Archimedean property](http://mathonline.wikidot.com/the-archimedean-property).
+
+Consider the set $ S = \{ k \in \mathbb{N}: \frac{k}{n}\lt x \}$. This set is finite, so its complement is infinite, non-empty especially. By the [well-ordering principle](https://brilliant.org/wiki/the-well-ordering-principle/), the set $\mathbb{R}\setminus S = \{k\in\mathbb{N}:\frac{k}{n}>x\}$ has a least element.
+
+Let $m$ be the smallest natural number with $\frac{m}{n} > x$, especially $\frac{m-1}{n}< x$. $m, n \in \mathbb{N}, \frac{m}{n} \in \mathbb{Q}$.
+
+**Claim:** $ x<\frac{m}{n}\leq y$ is the number we want.
+
+$$
+\begin{aligned}
+&\frac{m}{n} =\frac{m-1}{n} + \frac{1}{n} < x+y-x =y\\
+&\frac{m}{n} >x \text{ by our choice of m}\\
+\Rightarrow &\  x<\frac{m}{n}<y \ \square
+\end{aligned}
+$$
+
+### Notes
+
+The choice of $\frac{1}{n}<y-x$ in the first step seems mysterious, but everything follows that is easy to understand. The reason why we made this choice is: $\frac{1}{n}$ is the step size, if it's greater than $y-x$, assume $z<x, z+\frac{1}{n}$ may be greater than $y$. That is, we may go past $y$ directly, which is bad for finding a number **between** $x, y$.
+
+Of course, the set $S =\{k\in\mathbb{N}:\frac{k}{n} \lt x\} $ may be empty ( $\frac{1}{n}\gt x$ ), but that doesn't matter. $\mathbb{R}\setminus S$ is "more" infinite. The well-ordering principle holds as long as $\mathbb{R}\setminus S$ is non-empty. Using infinity to show non-emptiness may seem like an overkill, but interestingly, this kind of "overkill" happens all the time. It's easier to get information from a stronger statement.
+
+> We require f to be continuous on the whole domain, but actually we only used continuity at a single point in this proof. -- My analysis professor
+
+## Every continuous function on a compact domain is uniformly continuous.
+
+### Proof
+
+Let $f: A→ \mathbb{R}$ be continuous. Let $ \epsilon >0,$ then $ \forall \ x\in \ A,\ \exists \delta _{x} >0:|x-u|< \delta _{x} \Longrightarrow \ |f( \ x) \ -f( \ u) |\ < \ \frac{1}{2} \epsilon $ (1)
+
+Consider the neighborhoods $ V*{\frac{1}{2} \delta *{x} }( x) ,\ \forall x\in A$. Then, $ C\ :=\{V_{\frac{1}{2} \delta _{x} }( x) :x\in A\}$ is an open cover of A since an arbitrary union of open sets are still open. A is compact, so $ C$ has a finite subcover, $ U:=\{V*{\frac{1}{2} \delta *{x*{k} }}( x*{1}) ,\ \cdots ,V*{\frac{1}{2} \delta *{x*{k} }}( x*{k})\}$ where $ x*{1} ,\cdots ,x*{k} \in A$
+
+Let $ x,\ u\ \in A$ be arbitrary. We want to show $ |x-u|< \delta \Longrightarrow |f( x) -f( u) |< \epsilon $. For now, we only know $f$ behaves nicely locally(within each neighborhood around $ x\_{i} ,\ 1\leqslant i\leqslant k$ ), but uniformly continuity is a global property.
+
+_Intuition_: If $ x, u$ are in the same neighborhood around $ x*{i}$, we can utilize the nice, local behavior. The problem is that $ \delta *{x*{i} }$ depends on $ x*{i}$, so the required distance varies in different locations on the domain. Can we find a $ \delta $ that makes $ x$ and $ u$ "close enough" to be considered locally, no matter where they are?
+
+Yes, we can. Why? Because $ U$ is finite.
+
+Let $ \delta :=\min\left\{\frac{1}{2} \delta*{{x}*{1}},\cdots ,\frac{1}{2} \delta*{{x}*{k}}\right\} $. $U$ covers A, so $ x \in V*{\frac{1}{2} \delta*{{x}_{i}}}( x*{i}) $for some $ x*{i} \in A$.
+
+$$
+\begin{gathered}
+\begin{aligned}
+|x-x_{i} | & < \frac{1}{2} \delta _{ {x}_{i} } < \delta _{ {x}_{i} } \Longrightarrow |f( x) -f( x_{i}) |< \frac{1}{2} \epsilon \ \text{by (1)}\\
+|u-x_{i} | & =|u-x+x-x_{i} |\\
+ \text{triangle ineq} & \leq |u-x|+|x-x_{i} |< \delta +\frac{1}{2} \delta _{ {x}_{i} } \leq \frac{1}{2} \delta _{ {x}_{i} } +\frac{1}{2} \delta _{ {x}_{i} } =\delta _{ {x}_{i} }\\
+|u-x_{i} |< \delta _{ {x}_{i} }& \Longrightarrow |f( u) -f( x_{i}) |< \frac{1}{2} \epsilon \\
+|f( x) -f( u) | & =|f( x) -f( x_{i}) +f( x_{i}) -f( u) |\\
+ & \leq |f( x) -f( x_{i}) |+|f( x_{i}) -f( u) |\\
+ & < \frac{1}{2} \epsilon +\frac{1}{2} \epsilon =\epsilon \ \square \\
+
+\end{aligned}\\
+\end{gathered}
+$$
+
+### Notes
+
+If $ U$ is infinite, we are unable to take the minimum of all neighborhoods. To recap, our goal is to find a $ \delta $ that is "close enough" for arbitrary $ x,\ u\ \in A$ such that $ |f( x) -f( u) |< \epsilon $. The idea is to use $ x_{i}$ as a bridge between $ x$ and $ u$ since we only know how $ f$ behaves near each $ x*{i}$. Choosing $ \frac{1}{2} \delta *{ {x}_{i} }$neighborhoods ensures $ x,\ u$ are in the same neighborhood of $ x_{i}$. This enables us to rely on $ f$'s local behavior.
+
+## Bolzano-Weierstrass Theorem: Every bounded sequence in $\mathbb{R}$ has a convergent subsequence
+
+The proof is only for $\mathbb{R}$, but the theorem also holds in $\mathbb{R^n}$ and $\mathbb{C}^n$.
+
+**Definition:** Let $(x_n)$ be a sequence of real numbers. $x_N$ is called a _peak_ if $\forall n\geq N, x_N\geq x_n$ i.e., $x_N$ is the largest term in the sequence starting from it.
+
+### Lemma: Every sequence of real numbers has a monotone subsequence
+
+#### Proof
+
+Let $(x_n)$ be a sequence of real numbers. There are two cases regrading the number of peaks:
+
+**Case1:** $(x_n)$ has infinitely many peaks. We can find a subsequence $(x_{n_{k} })$ consisting of peaks. $(x_{n_{1} })$ is a peak, so $x_{n_{1} } \geq x_n, \forall n\geq n_1$. Thus, $x_{n_{1} }\geq x_{n_{2} }$. Similarly, $x_{n_{2} }$ is a peak, so $x_{n_{2} } \geq x_{n_{3} } \geq x_{n_{4} } \geq \cdots$, etc.
+
+The sequence is monotone increasing.
+
+**Case2: ** $(x_n)$ has finitely many peaks. Then, we choose our subsequence after the last peak. Let $x_N$ be the last peak. For $x_n, n\geq N, \exists x_m, m\gt n, \text{such that } \ x_m \gt x_n$ since $x_n$ is not a peak. Similarly, $x_m$ is not a peak, so $\exists x_k, k\gt m, \text{such that } \ x_k \gt x_m$. Following this procedure, we end up with a monotone increasing subsequence.
+
+In both cases, there exists a monotone subsequence in $(x_n)$, so the lemma is proved.
+
+### Proof of the theorem
+
+$(x_n)$ is bounded. By lemma, $(x_n)$ has a monotone subsequence $(x_{n_{k} })$. By the [monotone convergence theorem](http://mathonline.wikidot.com/the-monotone-convergence-theorem/), the sequence converges $\square$.
+
+### Notes
+
+The proof is elegant and more importantly, easy to follow. The definition of _peak_ is the key observation which makes the proof intuitive.
+
+> The power of a perfect definition. -- The Teaching assistant
+
+[1]: http://mathonline.wikidot.com/the-archimedean-property 'No infinitely large  or infinitely small elements'
+[2]: https://brilliant.org/wiki/the-well-ordering-principle/ 'Every non-empty set of positive integers contains a least element'
+[3]: http://mathonline.wikidot.com/the-monotone-convergence-theorem/
