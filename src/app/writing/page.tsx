@@ -2,8 +2,8 @@ import { allArticles, Article } from 'contentlayer/generated'
 import NextLink from 'next/link'
 
 export const metadata = {
-  title: 'Writing',
-  description: "Sixian's writing",
+  title: 'Writing | Sixian Li',
+  description: 'On life and tech',
 }
 
 export default function Writing() {

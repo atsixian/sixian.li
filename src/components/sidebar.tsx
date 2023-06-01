@@ -12,7 +12,7 @@ type Link = {
 
 const NAV_LINKS: Link[] = [
   { node: '写作', href: '/writing' },
-  { node: '演讲', href: '/talk' },
+  { node: '演讲', href: '/talks' },
   { node: '视觉', href: '/visuals' },
 ]
 
