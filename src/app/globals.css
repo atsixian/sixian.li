@@ -16,14 +16,30 @@
   }
 }
 
-article a {
+.prose h2 a,
+.prose h3 a {
+  @apply no-underline;
+}
+
+.prose h2 a::before,
+.prose h3 a::before {
+  @apply absolute -left-4 text-zinc-300 opacity-0 transition-opacity;
+  content: '#';
+}
+
+.prose h2 a:hover::before,
+.prose h3 a:hover::before {
+  @apply opacity-100;
+}
+
+.prose a {
   position: relative;
   text-decoration-color: theme(colors.zinc.500) !important;
   text-underline-offset: 0.1em;
   transition: text-underline-offset 300ms;
 }
 
-article a:hover {
+.prose a:hover {
   text-decoration-color: theme(colors.zinc.800) !important;
   text-underline-offset: 0.15em;
   transition: text-underline-offset 200ms;

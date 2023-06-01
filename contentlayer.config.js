@@ -1,12 +1,14 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 import rehypeKatex from 'rehype-katex'
 import remarkMath from 'remark-math'
+import rehypeSlug from 'rehype-slug'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
   slug: {
     type: 'string',
-    resolve: doc => doc._raw.flattenedPath,
+    resolve: doc => doc.slug ?? doc._raw.flattenedPath,
   },
 }
 
@@ -26,6 +28,10 @@ export default makeSource({
   documentTypes: [Article],
   mdx: {
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex],
+    rehypePlugins: [
+      rehypeKatex,
+      rehypeSlug,
+      [rehypeAutolinkHeadings, { behavior: 'wrap' }],
+    ],
   },
 })
