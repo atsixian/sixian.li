@@ -3,6 +3,7 @@ import rehypeKatex from 'rehype-katex'
 import remarkMath from 'remark-math'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypePrettyCode from 'rehype-pretty-code'
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
@@ -32,6 +33,19 @@ export default makeSource({
       rehypeKatex,
       rehypeSlug,
       [rehypeAutolinkHeadings, { behavior: 'wrap' }],
+      [
+        rehypePrettyCode,
+        {
+          theme: 'nord',
+          onVisitLine(node) {
+            // Prevent lines from collapsing in `display: grid` mode, and allow empty
+            // lines to be copy/pasted
+            if (node.children.length === 0) {
+              node.children = [{ type: 'text', value: ' ' }]
+            }
+          },
+        },
+      ],
     ],
   },
 })
