@@ -48,12 +48,12 @@ function ArticlesByYear({ articles }: { articles: Article[] }) {
       {articles.map(article => (
         <div
           key={article.slug}
-          className="flex flex-row justify-between transition-all duration-300 hover:text-zinc-900 hover:duration-200"
+          className="flex flex-row justify-between text-zinc-700 transition-all duration-300 hover:text-zinc-900 hover:duration-200"
         >
           <NextLink href={`/writing/${article.slug}`}>
             <h3>{article.title}</h3>
           </NextLink>
-          <time dateTime={article.date} className="shrink-0">
+          <time dateTime={article.date} className="shrink-0 text-zinc-500">
             {new Date(article.date).toLocaleDateString(undefined, {
               month: 'short',
               day: 'numeric',
