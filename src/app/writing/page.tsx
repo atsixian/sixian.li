@@ -32,9 +32,9 @@ export default function Writing() {
       {years.map(year => (
         <section
           key={year}
-          className="border-b border-b-zinc-200 pb-2 text-zinc-700"
+          className="border-b border-b-zinc-200 pb-4 text-zinc-700"
         >
-          <h2 className="mb-1 text-3xl">{year}</h2>
+          <h2 className="mb-3 text-3xl">{year}</h2>
           <ArticlesByYear articles={articlesByYear[year]} />
         </section>
       ))}
@@ -44,7 +44,7 @@ export default function Writing() {
 
 function ArticlesByYear({ articles }: { articles: Article[] }) {
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-2">
       {articles.map(article => (
         <div
           key={article.slug}
@@ -53,7 +53,7 @@ function ArticlesByYear({ articles }: { articles: Article[] }) {
           <NextLink href={`/writing/${article.slug}`}>
             <h3>{article.title}</h3>
           </NextLink>
-          <time dateTime={article.date}>
+          <time dateTime={article.date} className="shrink-0">
             {new Date(article.date).toLocaleDateString(undefined, {
               month: 'short',
               day: 'numeric',
