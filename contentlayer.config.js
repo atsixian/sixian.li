@@ -9,8 +9,7 @@ import rehypePrettyCode from 'rehype-pretty-code'
 const computedFields = {
   slug: {
     type: 'string',
-    resolve: doc =>
-      doc.slug ?? doc._raw.flattenedPath.replace(/^\d{4}-\d{2}-\d{2}-/, ''),
+    resolve: doc => doc._raw.flattenedPath.replace(/^\d{4}-\d{2}-\d{2}-/, ''),
   },
 }
 
