@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { allArticles } from 'contentlayer/generated'
 import { notFound } from 'next/navigation'
 import { Mdx } from '@/components/mdx'
+import '@/katex/katex.min.css'
 
 export async function generateStaticParams() {
   return allArticles.map(article => ({

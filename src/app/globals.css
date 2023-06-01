@@ -19,11 +19,12 @@
 article a {
   position: relative;
   text-decoration-color: theme(colors.zinc.500) !important;
-  text-underline-offset: 0.2em;
+  text-underline-offset: 0.1em;
   transition: text-underline-offset 300ms;
 }
+
 article a:hover {
   text-decoration-color: theme(colors.zinc.800) !important;
-  text-underline-offset: 0.25em;
+  text-underline-offset: 0.15em;
   transition: text-underline-offset 200ms;
 }
