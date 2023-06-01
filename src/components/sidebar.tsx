@@ -45,7 +45,7 @@ export function Sidebar() {
               className={clsx(
                 linkStyle,
                 currentRoute !== '/' &&
-                  (currentRoute === link.href
+                  (currentRoute.startsWith(link.href)
                     ? 'font-bold'
                     : '[&:not(:hover)]:opacity-30')
               )}
