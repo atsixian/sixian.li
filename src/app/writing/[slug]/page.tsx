@@ -39,7 +39,7 @@ export default async function Article({ params }: ArticleProps) {
   return (
     <article className="prose prose-zinc mb-10">
       <time dateTime={article.date}>
-        {new Date(article.date).toLocaleDateString('zh-CN', {
+        {new Date(article.date).toLocaleDateString(undefined, {
           year: 'numeric',
           month: 'long',
           day: 'numeric',

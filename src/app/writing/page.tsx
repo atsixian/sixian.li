@@ -54,7 +54,7 @@ function ArticlesByYear({ articles }: { articles: Article[] }) {
             <h3>{article.title}</h3>
           </NextLink>
           <time dateTime={article.date}>
-            {new Date(article.date).toLocaleDateString('zh-CN', {
+            {new Date(article.date).toLocaleDateString(undefined, {
               month: 'short',
               day: 'numeric',
             })}
