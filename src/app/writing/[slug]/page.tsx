@@ -1,8 +1,10 @@
+import '@/katex/katex.min.css'
+
 import type { Metadata } from 'next'
 import { allArticles } from 'contentlayer/generated'
 import { notFound } from 'next/navigation'
 import { Mdx } from '@/components/mdx'
-import '@/katex/katex.min.css'
+import { Balancer } from 'react-wrap-balancer'
 
 export async function generateStaticParams() {
   return allArticles.map(article => ({
@@ -38,7 +40,7 @@ export default async function Article({ params }: ArticleProps) {
   }
 
   return (
-    <article className="prose prose-zinc mb-10">
+    <div>
       <time dateTime={article.date}>
         {new Date(article.date).toLocaleDateString(undefined, {
           year: 'numeric',
@@ -46,8 +48,10 @@ export default async function Article({ params }: ArticleProps) {
           day: 'numeric',
         })}
       </time>
-      <h1>{article.title}</h1>
+      <h1 className="mb-5 text-3xl font-bold">
+        <Balancer>{article.title}</Balancer>
+      </h1>
       <Mdx code={article.body.code} />
-    </article>
+    </div>
   )
 }
