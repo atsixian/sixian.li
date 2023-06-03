@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "cross-env ANALYZE=true next build"
   },
   "dependencies": {
     "@mdx-js/loader": "^2.3.0",
@@ -41,11 +42,14 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^13.4.4",
     "@tailwindcss/typography": "^0.5.9",
+    "cross-env": "^7.0.3",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-mdx": "^2.1.0",
     "eslint-plugin-tailwindcss": "^3.12.0",
     "lint-staged": "^13.2.2",
+    "next-compose-plugins": "^2.2.1",
     "prettier": "^2.8.8",
     "sass": "^1.62.1",
     "simple-git-hooks": "^2.8.1"
