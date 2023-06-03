@@ -39,7 +39,7 @@ export function Sidebar() {
   const currentRoute = usePathname()
 
   const linkStyle =
-    'transition-all duration-300 hover:text-zinc-900 hover:duration-200 group-hover:[&:not(:hover)]:opacity-30'
+    'transition-all duration-300 hover:text-zinc-900 hover:duration-200 group-hover:[&:not(:hover)]:opacity-50'
   return (
     <nav className="w-full max-w-[58ch] p-6 md:w-auto md:p-0">
       <ul className="flex flex-row justify-between gap-2 text-zinc-700 md:flex-col md:justify-between md:gap-4">
@@ -57,7 +57,7 @@ export function Sidebar() {
                 currentRoute !== '/' &&
                   (currentRoute.startsWith(link.href)
                     ? 'font-bold'
-                    : '[&:not(:hover)]:opacity-30')
+                    : '[&:not(:hover)]:opacity-50')
               )}
             >
               <NextLink
