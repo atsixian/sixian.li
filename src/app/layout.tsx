@@ -1,5 +1,6 @@
 import './globals.css'
 import { Sidebar } from '../components/sidebar'
+import { Analytics } from '@vercel/analytics/react'
 
 export const metadata = {
   title: 'Sixian Li',
@@ -20,6 +21,7 @@ export default function RootLayout({
             {children}
           </main>
         </div>
+        <Analytics />
       </body>
     </html>
   )
