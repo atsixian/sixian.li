@@ -46,20 +46,26 @@ function ArticlesByYear({ articles }: { articles: Article[] }) {
   return (
     <div className="flex flex-col gap-2">
       {articles.map(article => (
-        <div
+        <NextLink
           key={article.slug}
-          className="flex flex-row justify-between gap-2 text-zinc-700 transition-all duration-300 hover:text-zinc-900 hover:duration-200"
+          href={`/writing/${article.slug}`}
+          aria-label={article.title}
         >
-          <NextLink href={`/writing/${article.slug}`}>
-            <h3>{article.title}</h3>
-          </NextLink>
-          <time dateTime={article.date} className="shrink-0 text-zinc-500">
-            {new Date(article.date).toLocaleDateString(undefined, {
-              month: 'short',
-              day: 'numeric',
-            })}
-          </time>
-        </div>
+          <div className="group flex flex-row justify-between gap-2">
+            <h3 className="text-zinc-700 transition-colors group-hover:text-zinc-900">
+              {article.title}
+            </h3>
+            <time
+              dateTime={article.date}
+              className="shrink-0 text-zinc-500 transition-colors group-hover:text-zinc-700"
+            >
+              {new Date(article.date).toLocaleDateString(undefined, {
+                month: 'short',
+                day: 'numeric',
+              })}
+            </time>
+          </div>
+        </NextLink>
       ))}
     </div>
   )
