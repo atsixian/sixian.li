@@ -2,7 +2,7 @@ import { allArticles, Article } from 'contentlayer/generated'
 import NextLink from 'next/link'
 
 export const metadata = {
-  title: 'Writing | Sixian Li',
+  title: 'Writing',
   description: 'On life and tech',
 }
 

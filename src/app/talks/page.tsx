@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Talks | Sixian Li',
+  title: 'Talks',
 }
 
 export default function Talks() {

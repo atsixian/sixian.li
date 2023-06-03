@@ -1,9 +1,13 @@
 import './globals.css'
 import { Sidebar } from '../components/sidebar'
 import { Analytics } from '@vercel/analytics/react'
+import type { Metadata } from 'next'
 
-export const metadata = {
-  title: 'Sixian Li',
+export const metadata: Metadata = {
+  title: {
+    default: 'Sixian Li',
+    template: '%s | Sixian Li',
+  },
   description: "Sixian's floating thoughts",
 }
 
