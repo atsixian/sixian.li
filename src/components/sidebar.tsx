@@ -41,7 +41,7 @@ export function Sidebar() {
   const linkStyle =
     'transition-all duration-300 hover:text-zinc-900 hover:duration-200 group-hover:[&:not(:hover)]:opacity-50'
   return (
-    <nav className="w-full max-w-[60ch] p-6 md:w-auto md:p-0">
+    <nav className="z-20 w-full max-w-[60ch] p-6 md:z-auto md:w-auto md:p-0">
       <ul className="flex flex-row justify-between gap-2 text-zinc-700 md:flex-col md:justify-between md:gap-4">
         <li>
           <NextLink href="/" aria-label="主页">

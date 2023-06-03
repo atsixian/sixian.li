@@ -9,7 +9,7 @@ html {
 .prose h2 a,
 .prose h3 a,
 .prose h4 a {
-  @apply no-underline;
+  @apply no-underline relative;
 }
 
 .prose h2 a::before,
@@ -26,7 +26,6 @@ html {
 }
 
 .prose a {
-  position: relative;
   text-decoration-color: theme(colors.zinc.500) !important;
   text-underline-offset: 0.1em;
   transition: text-underline-offset 300ms;
@@ -36,4 +35,12 @@ html {
   text-decoration-color: theme(colors.zinc.800) !important;
   text-underline-offset: 0.15em;
   transition: text-underline-offset 200ms;
+}
+
+#blur-bar {
+  @apply w-full h-20 fixed top-0 gradient-mask-b-0 backdrop-blur bg-white/50 pointer-events-none select-none z-10;
+}
+
+#blur-bar::after {
+  @apply absolute h-full w-full content-[""] bg-gradient-to-b from-white/80 to-transparent;
 }

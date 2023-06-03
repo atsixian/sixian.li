@@ -52,7 +52,8 @@
     "next-compose-plugins": "^2.2.1",
     "prettier": "^2.8.8",
     "sass": "^1.62.1",
-    "simple-git-hooks": "^2.8.1"
+    "simple-git-hooks": "^2.8.1",
+    "tailwind-gradient-mask-image": "^1.0.0"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
