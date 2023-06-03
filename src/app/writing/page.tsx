@@ -30,10 +30,7 @@ export default function Writing() {
   return (
     <div className="flex flex-col gap-3">
       {years.map(year => (
-        <section
-          key={year}
-          className="border-b border-b-zinc-200 pb-4 text-zinc-700"
-        >
+        <section key={year} className="border-b border-b-zinc-200 pb-4">
           <h2 className="mb-3 text-3xl">{year}</h2>
           <ArticlesByYear articles={articlesByYear[year]} />
         </section>
@@ -52,12 +49,12 @@ function ArticlesByYear({ articles }: { articles: Article[] }) {
           aria-label={article.title}
         >
           <div className="group flex flex-row justify-between gap-2">
-            <h3 className="text-zinc-700 transition-colors group-hover:text-zinc-900">
+            <h3 className="transition-colors group-hover:text-fg-hover-color">
               {article.title}
             </h3>
             <time
               dateTime={article.date}
-              className="shrink-0 text-zinc-500 transition-colors group-hover:text-zinc-700"
+              className="shrink-0 text-fg-secondary-color transition-colors group-hover:text-fg-secondary-hover-color"
             >
               {new Date(article.date).toLocaleDateString(undefined, {
                 month: 'short',

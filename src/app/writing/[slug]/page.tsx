@@ -42,14 +42,14 @@ export default async function Article({ params }: ArticleProps) {
 
   return (
     <div>
-      <time dateTime={article.date} className="text-sm text-zinc-500">
+      <time dateTime={article.date} className="text-sm text-fg-secondary-color">
         {new Date(article.date).toLocaleDateString(undefined, {
           year: 'numeric',
           month: 'long',
           day: 'numeric',
         })}
       </time>
-      <h1 className="mb-5 mt-1 text-3xl font-bold">
+      <h1 className="mb-5 mt-1 text-3xl font-bold dark:text-white">
         <Balancer>{article.title}</Balancer>
       </h1>
       <Mdx code={article.body.code} />

@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --bg-color: theme(colors.white);
+    --fg-color: theme(colors.zinc.700);
+    --fg-hover-color: theme(colors.zinc.900);
+    --fg-secondary-color: theme(colors.zinc.500);
+    --fg-secondary-hover-color: theme(colors.zinc.700);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-color: theme(colors.zinc.900);
+      --fg-color: theme(colors.zinc.300);
+      --fg-hover-color: theme(colors.zinc.100);
+      --fg-secondary-color: theme(colors.zinc.400);
+      --fg-secondary-hover-color: theme(colors.zinc.200);
+    }
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -15,7 +35,7 @@ html {
 .prose h2 a::before,
 .prose h3 a::before,
 .prose h4 a::before {
-  @apply absolute -left-4 text-zinc-300 opacity-0 transition-opacity;
+  @apply absolute -left-4 text-zinc-300 dark:text-zinc-500 opacity-0 transition-opacity;
   content: '#';
 }
 
@@ -26,14 +46,12 @@ html {
 }
 
 .prose a {
-  text-decoration-color: theme(colors.zinc.500) !important;
-  text-underline-offset: 0.1em;
+  @apply underline-offset-[0.1em];
   transition: text-underline-offset 300ms;
 }
 
 .prose a:hover {
-  text-decoration-color: theme(colors.zinc.800) !important;
-  text-underline-offset: 0.15em;
+  @apply underline-offset-[0.15em] text-fg-hover-color;
   transition: text-underline-offset 200ms;
 }
 

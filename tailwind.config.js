@@ -10,6 +10,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'bg-color': 'var(--bg-color)',
+        'fg-color': 'var(--fg-color)',
+        'fg-hover-color': 'var(--fg-hover-color)',
+        'fg-secondary-color': 'var(--fg-secondary-color)',
+        'fg-secondary-hover-color': 'var(--fg-secondary-hover-color)',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

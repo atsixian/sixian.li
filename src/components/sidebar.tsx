@@ -39,10 +39,10 @@ export function Sidebar() {
   const currentRoute = usePathname()
 
   const linkStyle =
-    'transition-all duration-300 hover:text-zinc-900 hover:duration-200 group-hover:[&:not(:hover)]:opacity-50'
+    'transition-all duration-300 hover:text-fg-hover-color hover:duration-200 group-hover:[&:not(:hover)]:opacity-50'
   return (
     <nav className="z-20 w-full max-w-[60ch] p-6 md:z-auto md:w-auto md:p-0">
-      <ul className="flex flex-row justify-between gap-2 text-zinc-700 md:flex-col md:justify-between md:gap-4">
+      <ul className="flex flex-row justify-between gap-2 md:flex-col md:justify-between md:gap-4">
         <li>
           <NextLink href="/" aria-label="主页">
             <Moon />
