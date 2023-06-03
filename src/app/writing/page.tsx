@@ -48,7 +48,7 @@ function ArticlesByYear({ articles }: { articles: Article[] }) {
       {articles.map(article => (
         <div
           key={article.slug}
-          className="flex flex-row justify-between text-zinc-700 transition-all duration-300 hover:text-zinc-900 hover:duration-200"
+          className="flex flex-row justify-between gap-2 text-zinc-700 transition-all duration-300 hover:text-zinc-900 hover:duration-200"
         >
           <NextLink href={`/writing/${article.slug}`}>
             <h3>{article.title}</h3>
