@@ -9,6 +9,20 @@ export const metadata: Metadata = {
     template: '%s | Sixian Li',
   },
   description: "Sixian's floating thoughts",
+  openGraph: {
+    title: 'Sixian Li',
+    description: 'Free spirit',
+    url: 'https://sixian.li',
+    siteName: 'Sixian Li',
+    images: [
+      {
+        url: 'https://sixian.li/og.png',
+        width: 1920,
+        height: 960
+      }
+    ],
+    type: 'website'
+  }
 }
 
 export default function RootLayout({
