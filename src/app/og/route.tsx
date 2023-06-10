@@ -6,8 +6,8 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
 
-    const title = searchParams.get('title') ?? 'This is title'
-    const lang = searchParams.get('lang') ?? 'zh-CN'
+    const title = searchParams.get('title') ?? "Sixian's floating thoughts"
+    const lang = searchParams.get('lang') ?? 'en-US'
 
     return new ImageResponse(
       (

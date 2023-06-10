@@ -63,7 +63,7 @@ export default async function Article({ params }: ArticleProps) {
   }
 
   return (
-    <div>
+    <div lang={article.lang}>
       <time dateTime={article.date} className="text-sm text-fg-secondary-color">
         {new Date(article.date).toLocaleDateString(undefined, {
           year: 'numeric',
@@ -78,8 +78,9 @@ export default async function Article({ params }: ArticleProps) {
       <p className="prose mb-10 border-y border-dashed border-zinc-400 p-6 text-center font-sans dark:prose-invert md:p-8">
         欢迎通过{' '}
         <NextLink href="https://twitter.com/noworkforsixian">Twitter</NextLink>{' '}
-        或<MyEmail />
-        告诉我你的想法
+        或<MyEmail>邮件</MyEmail>
+        告诉我你的想法<br/>
+        Find me on <NextLink href="https://twitter.com/noworkforsixian">Twitter</NextLink> or write me an <MyEmail>email</MyEmail>
       </p>
     </div>
   )
