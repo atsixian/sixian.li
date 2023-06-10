@@ -25,12 +25,12 @@ export async function GET(request: Request) {
           <div
             lang={lang}
             style={{
-              margin: '160px 160px 320px 95px',
+              margin: '85px 120px 230px 80px',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'flex-start',
               justifyContent: 'center',
-              fontSize: 100,
+              fontSize: 64,
               letterSpacing: '-0.05em',
               lineHeight: '120px',
               whiteSpace: 'pre-wrap',
@@ -43,8 +43,8 @@ export async function GET(request: Request) {
         </div>
       ),
       {
-        width: 1920,
-        height: 960,
+        width: 1200,
+        height: 630,
       }
     )
   } catch (e: any) {

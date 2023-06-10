@@ -17,8 +17,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: 'https://sixian.li/og.png',
-        width: 1920,
-        height: 960
+        width: 1200,
+        height: 630
       }
     ],
     type: 'website'
