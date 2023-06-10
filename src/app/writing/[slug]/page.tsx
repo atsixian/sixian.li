@@ -27,11 +27,31 @@ export async function generateMetadata({
     return
   }
 
-  const { title, description } = article
+  const { title, description, date, slug, lang } = article
+
+  const ogImage = `https://sixian.li/og?title=${title}&lang=${lang}`
 
   return {
     title,
     description,
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      publishedTime: date,
+      url: `https://sixian.li/writing/${slug}`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImage],
+    },
   }
 }
 
