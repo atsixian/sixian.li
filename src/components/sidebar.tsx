@@ -30,8 +30,8 @@ const SOCIAL_LINKS: Link[] = [
   },
   {
     node: <Github />,
-    href: 'https://github.com/Deerhound579',
-    ariaLabel: 'My GitHub',
+    href: 'https://github.com/Deerhound579/sixian.li',
+    ariaLabel: 'GitHub repo for this site',
   },
 ]
 
@@ -73,6 +73,7 @@ export function Sidebar() {
             <li key={link.href} className={linkStyle}>
               <NextLink
                 href={link.href}
+                target="_blank"
                 {...(link.ariaLabel && { 'aria-label': link.ariaLabel })}
               >
                 {link.node}
