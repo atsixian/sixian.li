@@ -37,9 +37,9 @@ export default function RootLayout({
           aria-hidden
           className="bg-bg-color/50 pointer-events-none fixed top-0 z-10 h-20 w-full select-none backdrop-blur gradient-mask-b-0 after:absolute after:inset-0 after:h-full after:w-full after:bg-gradient-to-b after:from-bg-color after:to-transparent after:opacity-80 after:content-['']"
         />
-        <div className="flex h-full flex-col items-center justify-start pb-24 font-serif md:relative md:flex-row md:items-start md:justify-center md:gap-6 md:py-32">
+        <div className="flex h-full flex-col items-center justify-start font-serif md:relative md:flex-row md:items-start md:justify-center md:gap-6 md:pb-12 md:pt-32">
           <Sidebar />
-          <main className="max-w-[60ch] px-6 md:w-[60ch]">{children}</main>
+          <main className="w-full px-6 md:w-[60ch]">{children}</main>
         </div>
         <Analytics />
       </body>
