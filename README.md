@@ -28,3 +28,4 @@ pnpm dev
 - https://paco.me/
 - https://leerob.io/
 - https://dailyminimal.tumblr.com/
+- https://www.figma.com/community/file/955866301003783604/Dreamy-Gradient-Blur
