@@ -20,7 +20,6 @@ specifiers:
   eslint-config-prettier: ^8.8.0
   eslint-plugin-mdx: ^2.1.0
   eslint-plugin-tailwindcss: ^3.12.0
-  github-slugger: ^2.0.0
   lint-staged: ^13.2.2
   lucide-react: ^0.220.0
   next: 13.4.3
@@ -59,7 +58,6 @@ dependencies:
   contentlayer: 0.3.2
   eslint: 8.41.0
   eslint-config-next: 13.4.3_opaykosi7ysrbskpnffskmbrki
-  github-slugger: 2.0.0
   lucide-react: 0.220.0_react@18.2.0
   next: 13.4.3_txdvpvppf2ilsh27xadmwrzlmm
   next-contentlayer: 0.3.2_o6dt4yn4syzkhlixdxt4y57rzi

@@ -1,15 +1,13 @@
 import '@/katex/katex.min.css'
 
-import type { Metadata } from 'next'
-import { allArticles } from 'contentlayer/generated'
-import { notFound } from 'next/navigation'
 import { Mdx } from '@/components/mdx'
-import { Balancer } from 'react-wrap-balancer'
-import NextLink from 'next/link'
 import { MyEmail } from '@/components/my-email'
-import GithubSlugger from 'github-slugger'
-import { ArrowUpLeft } from 'lucide-react'
-import { Link, linkStyle } from '@/components/link'
+import { allArticles } from 'contentlayer/generated'
+import type { Metadata } from 'next'
+import NextLink from 'next/link'
+import { notFound } from 'next/navigation'
+import { Balancer } from 'react-wrap-balancer'
+import { ToC, TocProps } from './toc'
 
 export async function generateStaticParams() {
   return allArticles.map(article => ({
@@ -69,28 +67,7 @@ export default async function Article({ params }: ArticleProps) {
 
   return (
     <>
-      <nav className="sticky z-20 w-full p-6 md:top-32 md:w-32 lg:-ml-56 lg:w-56">
-        <Link href="/writing" className="group mb-4 flex items-center gap-1">
-          <ArrowUpLeft
-            size={16}
-            strokeWidth={1.5}
-            className="transition-transform group-hover:-translate-x-[2px] group-hover:-translate-y-[2px]"
-          />
-          Writing
-        </Link>
-        <ul className="group hidden text-zinc-500 lg:block">
-          {headings.map(h => (
-            <li key={h.id} style={{ paddingInlineStart: `${h.level - 2}em` }}>
-              {/* TODO: Use Link when URL hash handling is fixed 
-                  https://github.com/vercel/next.js/issues/44295#issuecomment-1457042542
-              */}
-              <a href={`#${h.id}`} className={linkStyle}>
-                {h.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <ToC headings={headings} />
       <main className="w-full px-6 md:w-[60ch]">
         <div>
           <time
@@ -127,15 +104,22 @@ export default async function Article({ params }: ArticleProps) {
   )
 }
 
-function getHeadings(
-  content: string
-): { text: string; id: string; level: number }[] {
-  const slugger = new GithubSlugger()
+function getHeadings(mdContent: string): TocProps['headings'] {
+  const content = removeCodeBlockFromMd(mdContent)
+
   const headingRegex = /^(#+)\s+(.*)$/gm
   const headings = [...content.matchAll(headingRegex)].map(r => ({
     level: r[1].length,
     text: r[2],
-    id: slugger.slug(r[2]),
   }))
   return headings
+}
+
+// https://github.com/K-Sato1995/react-toc/blob/af8569d6dff8cbfb685b5614f7952eb19dceab73/src/utils.ts#LL39C1-L39C6
+function removeCodeBlockFromMd(mdContent: string): string {
+  const codeBlockRegex = new RegExp(
+    '((````[a-z]*\n[\\s\\S]*?\n````)|(```[a-z]*\n[\\s\\S]*?\n```)|(~~~[a-z]*\n[\\s\\S]*?\n~~~))',
+    'gms'
+  )
+  return mdContent.replace(codeBlockRegex, '')
 }

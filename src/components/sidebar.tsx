@@ -39,8 +39,6 @@ const SOCIAL_LINKS: Link[] = [
 export function Sidebar() {
   const currentRoute = usePathname()
 
-  const linkStyle =
-    'transition-all duration-300 hover:text-fg-hover-color hover:duration-200 group-hover:[&:not(:hover)]:opacity-50'
   return (
     <nav className="z-20 w-full max-w-[60ch] p-6 md:sticky md:top-32 md:-ml-20 md:w-20 md:p-0">
       <ul className="flex flex-row justify-between gap-2 md:flex-col md:justify-between md:gap-4">
