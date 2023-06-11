@@ -79,7 +79,7 @@ Of course, the set $S =\{k\in\mathbb{N}:\frac{k}{n} \lt x\} $ may be empty ( $\f
 
 > We require f to be continuous on the whole domain, but actually we only used continuity at a single point in this proof. -- My analysis professor
 
-## Every continuous function on a compact domain is uniformly continuous.
+## Every continuous function on a compact domain is uniformly continuous
 
 ### Proof
 
@@ -114,7 +114,9 @@ $$
 
 If $ U$ is infinite, we are unable to take the minimum of all neighborhoods. To recap, our goal is to find a $ \delta $ that is "close enough" for arbitrary $ x,\ u\ \in A$ such that $ |f( x) -f( u) |< \epsilon $. The idea is to use $ x_{i}$ as a bridge between $ x$ and $ u$ since we only know how $ f$ behaves near each $ x*{i}$. Choosing $ \frac{1}{2} \delta *{ {x}_{i} }$neighborhoods ensures $ x,\ u$ are in the same neighborhood of $ x_{i}$. This enables us to rely on $ f$'s local behavior.
 
-## Bolzano-Weierstrass Theorem: Every bounded sequence in $\mathbb{R}$ has a convergent subsequence
+## Bolzano-Weierstrass Theorem
+
+Every bounded sequence in $\mathbb{R}$ has a convergent subsequence.
 
 The proof is only for $\mathbb{R}$, but the theorem also holds in $\mathbb{R^n}$ and $\mathbb{C}^n$.
 
@@ -130,7 +132,7 @@ Let $(x_n)$ be a sequence of real numbers. There are two cases regrading the num
 
 The sequence is monotone increasing.
 
-**Case2: ** $(x_n)$ has finitely many peaks. Then, we choose our subsequence after the last peak. Let $x_N$ be the last peak. For $x_n, n\geq N, \exists x_m, m\gt n, \text{such that } \ x_m \gt x_n$ since $x_n$ is not a peak. Similarly, $x_m$ is not a peak, so $\exists x_k, k\gt m, \text{such that } \ x_k \gt x_m$. Following this procedure, we end up with a monotone increasing subsequence.
+**Case2:** $(x_n)$ has finitely many peaks. Then, we choose our subsequence after the last peak. Let $x_N$ be the last peak. For $x_n, n\geq N, \exists x_m, m\gt n, \text{such that } \ x_m \gt x_n$ since $x_n$ is not a peak. Similarly, $x_m$ is not a peak, so $\exists x_k, k\gt m, \text{such that } \ x_k \gt x_m$. Following this procedure, we end up with a monotone increasing subsequence.
 
 In both cases, there exists a monotone subsequence in $(x_n)$, so the lemma is proved.
 
