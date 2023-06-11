@@ -1,5 +1,7 @@
 'use client'
 import { Link, linkStyle } from '@/components/link'
+import { selector, useHeadingObserver } from '@/hooks/use-heading-observer'
+import clsx from 'clsx'
 import { ArrowUpLeft } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
@@ -11,9 +13,10 @@ export type TocProps = {
 
 export function ToC({ headings }: TocProps) {
   const [ids, setIds] = useState<String[]>([])
+  const { activeId } = useHeadingObserver()
 
   useEffect(() => {
-    const headings = document.querySelectorAll('h2, h3, h4')
+    const headings = document.querySelectorAll(selector)
     setIds([...headings].map(h => h.id))
   }, [])
 
@@ -33,7 +36,14 @@ export function ToC({ headings }: TocProps) {
             {/* TODO: Use Link when URL hash handling is fixed 
             https://github.com/vercel/next.js/issues/44295#issuecomment-1457042542
         */}
-            <a href={`#${ids[idx]}`} className={linkStyle}>
+            <a
+              href={`#${ids[idx]}`}
+              className={clsx(
+                linkStyle,
+                activeId == ids[idx] &&
+                  'text-fg-color shadow-current drop-shadow'
+              )}
+            >
               {h.text}
             </a>
           </li>

@@ -40,7 +40,7 @@ export function Sidebar() {
   const currentRoute = usePathname()
 
   return (
-    <nav className="z-20 w-full max-w-[60ch] p-6 md:sticky md:top-32 md:-ml-20 md:w-20 md:p-0">
+    <nav className="z-20 w-full p-6 md:sticky md:top-32 md:-ml-20 md:w-20 md:p-0">
       <ul className="flex flex-row justify-between gap-2 md:flex-col md:justify-between md:gap-4">
         <li className="flex">
           <NextLink href="/" aria-label="home" className="m-auto">
@@ -55,8 +55,9 @@ export function Sidebar() {
                 {...(link.ariaLabel && { 'aria-label': link.ariaLabel })}
                 className={clsx(
                   currentRoute !== '/' &&
-                    !currentRoute?.startsWith(link.href) &&
-                    '[&:not(:hover)]:opacity-50'
+                    (currentRoute?.startsWith(link.href)
+                      ? 'shadow-current drop-shadow'
+                      : '[&:not(:hover)]:opacity-50')
                 )}
               >
                 {link.node}
