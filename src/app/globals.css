@@ -23,7 +23,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  @apply scroll-pt-14 scroll-smooth;
 }
 
 .prose h2 a,
