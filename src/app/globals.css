@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --bg-color: theme(colors.white);
+    --bg-color: 255 255 255;
     --fg-color: theme(colors.zinc.700);
     --fg-hover-color: theme(colors.zinc.900);
     --fg-secondary-color: theme(colors.zinc.500);
@@ -13,7 +13,7 @@
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg-color: theme(colors.zinc.900);
+      --bg-color: 24 24 27;
       --fg-color: theme(colors.zinc.300);
       --fg-hover-color: theme(colors.zinc.100);
       --fg-secondary-color: theme(colors.zinc.400);

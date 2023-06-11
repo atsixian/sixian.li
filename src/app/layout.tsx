@@ -2,6 +2,7 @@ import './globals.css'
 import { Sidebar } from '../components/sidebar'
 import { Analytics } from '@vercel/analytics/react'
 import type { Metadata } from 'next'
+import clsx from 'clsx'
 
 export const metadata: Metadata = {
   title: {
@@ -35,12 +36,18 @@ export default function RootLayout({
       <body className="bg-bg-color text-fg-color">
         <div
           aria-hidden
-          className="bg-bg-color/50 pointer-events-none fixed top-0 z-10 h-20 w-full select-none backdrop-blur gradient-mask-b-0 after:absolute after:inset-0 after:h-full after:w-full after:bg-gradient-to-b after:from-bg-color after:to-transparent after:opacity-80 after:content-['']"
+          className={clsx(
+            "pointer-events-none fixed top-0 z-10 h-20 w-full select-none",
+            "bg-gradient-to-t from-transparent to-bg-color/80",
+            "backdrop-blur",
+            "gradient-mask-b-0",
+          )}
         />
         <div className="flex h-full flex-col items-center justify-start font-serif md:relative md:flex-row md:items-start md:justify-center md:gap-6 md:pb-12 md:pt-32">
           <Sidebar />
           <main className="w-full px-6 md:w-[60ch]">{children}</main>
         </div>
+        {children}
         <Analytics />
       </body>
     </html>

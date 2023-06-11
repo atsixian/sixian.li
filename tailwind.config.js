@@ -1,5 +1,3 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -7,11 +5,12 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/mdx-components.tsx',
+    './src/content/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       colors: {
-        'bg-color': 'var(--bg-color)',
+        'bg-color': 'rgb(var(--bg-color) / <alpha-value>)',
         'fg-color': 'var(--fg-color)',
         'fg-hover-color': 'var(--fg-hover-color)',
         'fg-secondary-color': 'var(--fg-secondary-color)',
