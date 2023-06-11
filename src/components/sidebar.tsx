@@ -4,6 +4,7 @@ import { Github, Twitter, Youtube } from 'lucide-react'
 import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Moon } from '../app/moon'
+import { Link } from './link'
 
 type Link = {
   node: React.ReactNode
@@ -50,34 +51,31 @@ export function Sidebar() {
         </li>
         <div className="group mr-auto flex flex-row items-center gap-3 md:m-0 md:flex-col">
           {NAV_LINKS.map(link => (
-            <li
-              key={link.href}
-              className={clsx(
-                linkStyle,
-                currentRoute !== '/' &&
-                  !currentRoute?.startsWith(link.href) &&
-                  '[&:not(:hover)]:opacity-50'
-              )}
-            >
-              <NextLink
+            <li key={link.href}>
+              <Link
                 href={link.href}
                 {...(link.ariaLabel && { 'aria-label': link.ariaLabel })}
+                className={clsx(
+                  currentRoute !== '/' &&
+                    !currentRoute?.startsWith(link.href) &&
+                    '[&:not(:hover)]:opacity-50'
+                )}
               >
                 {link.node}
-              </NextLink>
+              </Link>
             </li>
           ))}
         </div>
         <div className="group flex items-center gap-2 md:flex-col">
           {SOCIAL_LINKS.map(link => (
-            <li key={link.href} className={linkStyle}>
-              <NextLink
+            <li key={link.href}>
+              <Link
                 href={link.href}
                 target="_blank"
                 {...(link.ariaLabel && { 'aria-label': link.ariaLabel })}
               >
                 {link.node}
-              </NextLink>
+              </Link>
             </li>
           ))}
         </div>
