@@ -43,11 +43,9 @@ export default function RootLayout({
             "gradient-mask-b-0",
           )}
         />
-        <div className="flex h-full flex-col items-center justify-start font-serif md:relative md:flex-row md:items-start md:justify-center md:gap-6 md:pb-12 md:pt-32">
-          <Sidebar />
-          <main className="w-full px-6 md:w-[60ch]">{children}</main>
+        <div className="flex h-full flex-col items-center justify-start font-serif md:relative md:flex-row md:items-start md:justify-center md:pb-12 md:pt-32">
+          {children}
         </div>
-        {children}
         <Analytics />
       </body>
     </html>

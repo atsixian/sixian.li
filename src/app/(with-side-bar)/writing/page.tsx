@@ -1,3 +1,4 @@
+import { Sidebar } from '@/components/sidebar'
 import { allArticles, Article } from 'contentlayer/generated'
 import NextLink from 'next/link'
 
