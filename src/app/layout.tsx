@@ -1,4 +1,3 @@
-import { Analytics } from '@vercel/analytics/react'
 import clsx from 'clsx'
 import type { Metadata } from 'next'
 import Script from 'next/script'
@@ -46,7 +45,6 @@ export default function RootLayout({
         <div className="flex h-full flex-col items-center justify-start font-serif md:relative md:flex-row md:items-start md:justify-center md:pb-12 md:pt-32">
           {children}
         </div>
-        <Analytics />
         <Script
           src="https://analytics.sixian.li/script.js"
           data-website-id="12db5e3c-c469-4c99-a348-bc7acd4ac46d"
