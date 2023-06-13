@@ -1,8 +1,8 @@
-import './globals.css'
-import { Sidebar } from '../components/sidebar'
 import { Analytics } from '@vercel/analytics/react'
-import type { Metadata } from 'next'
 import clsx from 'clsx'
+import type { Metadata } from 'next'
+import Script from 'next/script'
+import './globals.css'
 
 export const metadata: Metadata = {
   title: {
@@ -19,11 +19,11 @@ export const metadata: Metadata = {
       {
         url: 'https://sixian.li/og.png',
         width: 1200,
-        height: 630
-      }
+        height: 630,
+      },
     ],
-    type: 'website'
-  }
+    type: 'website',
+  },
 }
 
 export default function RootLayout({
@@ -37,16 +37,20 @@ export default function RootLayout({
         <div
           aria-hidden
           className={clsx(
-            "pointer-events-none fixed top-0 z-10 h-20 w-full select-none",
-            "bg-gradient-to-t from-transparent to-bg-color/80",
-            "backdrop-blur",
-            "gradient-mask-b-0",
+            'pointer-events-none fixed top-0 z-10 h-20 w-full select-none',
+            'bg-gradient-to-t from-transparent to-bg-color/80',
+            'backdrop-blur',
+            'gradient-mask-b-0'
           )}
         />
         <div className="flex h-full flex-col items-center justify-start font-serif md:relative md:flex-row md:items-start md:justify-center md:pb-12 md:pt-32">
           {children}
         </div>
         <Analytics />
+        <Script
+          src="https://analytics.sixian.li/script.js"
+          data-website-id="12db5e3c-c469-4c99-a348-bc7acd4ac46d"
+        />
       </body>
     </html>
   )
