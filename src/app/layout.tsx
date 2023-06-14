@@ -45,10 +45,12 @@ export default function RootLayout({
         <div className="flex h-full flex-col items-center justify-start font-serif md:relative md:flex-row md:items-start md:justify-center md:pb-12 md:pt-32">
           {children}
         </div>
-        <Script
-          src="https://analytics.sixian.li/script.js"
-          data-website-id="12db5e3c-c469-4c99-a348-bc7acd4ac46d"
-        />
+        {process.env.NODE_ENV === 'production' && (
+          <Script
+            src="https://analytics.sixian.li/script.js"
+            data-website-id="12db5e3c-c469-4c99-a348-bc7acd4ac46d"
+          />
+        )}
       </body>
     </html>
   )
