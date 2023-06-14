@@ -30,9 +30,25 @@ export const Article = defineDocumentType(() => ({
   computedFields,
 }))
 
+export const Talk = defineDocumentType(() => ({
+  name: 'Talk',
+  filePathPattern: `talks/**/*.md`,
+  fields: {
+    title: { type: 'string', required: true },
+    url: { type: 'string', required: true },
+    date: { type: 'date', required: true },
+  },
+  computedFields: {
+    order: {
+      type: 'number',
+      resolve: doc => Number(doc._raw.sourceFileName.match(/^(\d+)/)[1]),
+    },
+  },
+}))
+
 export default makeSource({
   contentDirPath: './src/content',
-  documentTypes: [Article],
+  documentTypes: [Article, Talk],
   mdx: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [
