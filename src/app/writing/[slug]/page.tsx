@@ -8,6 +8,7 @@ import NextLink from 'next/link'
 import { notFound } from 'next/navigation'
 import { Balancer } from 'react-wrap-balancer'
 import { ToC, TocProps } from './toc'
+import { DateTime } from '@/components/date-time'
 
 export async function generateStaticParams() {
   return allArticles.map(article => ({
@@ -70,16 +71,7 @@ export default async function Article({ params }: ArticleProps) {
       <ToC headings={headings} />
       <main className="w-full px-6 md:w-[60ch]">
         <div>
-          <time
-            dateTime={article.date}
-            className="text-sm text-fg-secondary-color"
-          >
-            {new Date(article.date).toLocaleDateString(undefined, {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </time>
+          <DateTime date={article.date}/>
           <h1 className="mb-5 mt-1 text-3xl font-bold dark:text-white">
             <Balancer>{article.title}</Balancer>
           </h1>
