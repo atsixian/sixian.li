@@ -1,6 +1,6 @@
 'use client'
 import clsx from 'clsx'
-import { Github, Twitter, Youtube } from 'lucide-react'
+import { Github, Rss, Twitter, Youtube } from 'lucide-react'
 import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Moon } from '../app/moon'
@@ -20,19 +20,24 @@ const NAV_LINKS: Link[] = [
 
 const SOCIAL_LINKS: Link[] = [
   {
-    node: <Twitter />,
+    node: <Twitter className="w-5 md:w-6" />,
     href: 'https://twitter.com/noworkforsixian',
     ariaLabel: 'My Twitter',
   },
   {
-    node: <Youtube />,
+    node: <Youtube className="w-5 md:w-6" />,
     href: 'https://www.youtube.com/channel/UC5md_sIlSGdcD_Zbsk9rKEA',
     ariaLabel: 'My YouTube channel',
   },
   {
-    node: <Github />,
+    node: <Github className="w-5 md:w-6" />,
     href: 'https://github.com/Deerhound579/sixian.li',
     ariaLabel: 'GitHub repo for this site',
+  },
+  {
+    node: <Rss className="w-5 md:w-6" />,
+    href: '/feed.xml',
+    ariaLabel: 'RSS',
   },
 ]
 
@@ -47,7 +52,7 @@ export function Sidebar() {
             <Moon />
           </NextLink>
         </li>
-        <div className="group mr-auto flex flex-row items-center gap-3 md:m-0 md:flex-col">
+        <div className="group mr-auto flex flex-row items-center gap-3 text-sm md:m-0 md:flex-col md:text-base">
           {NAV_LINKS.map(link => (
             <li key={link.href}>
               <Link
