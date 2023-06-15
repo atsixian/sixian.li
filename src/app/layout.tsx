@@ -23,6 +23,12 @@ export const metadata: Metadata = {
     ],
     type: 'website',
   },
+  alternates: {
+    canonical: 'https://sixian.li',
+    types: {
+      'application/rss+xml': [{ url: 'feed.xml', title: 'RSS' }],
+    },
+  },
 }
 
 export default function RootLayout({

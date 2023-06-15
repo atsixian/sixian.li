@@ -6,6 +6,25 @@ const bundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
-const nextConfig = { reactStrictMode: true, swcMinify: true }
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  async rewrites() {
+    return [
+      {
+        source: '/rss',
+        destination: '/feed.xml',
+      },
+      {
+        source: '/rss.xml',
+        destination: '/feed.xml',
+      },
+      {
+        source: '/feed',
+        destination: '/feed.xml',
+      },
+    ]
+  },
+}
 
 module.exports = withPlugins([mdx, contentlayer, bundleAnalyzer], nextConfig)
