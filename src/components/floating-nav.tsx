@@ -2,7 +2,6 @@
 import { Moon } from '@/app/moon'
 import clsx from 'clsx'
 import { motion, Variants } from 'framer-motion'
-import { ChevronUp } from 'lucide-react'
 import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
@@ -97,10 +96,38 @@ function NavButton({
       <motion.label
         htmlFor="menu"
         className="text-zinc-100 dark:text-zinc-800"
-        variants={arrowVariants}
-        style={{ originY: 0.55 }}
+        variants={{
+          open: { transition: { staggerChildren: 0 } },
+          closed: { transition: { staggerChildren: 0 } },
+        }}
       >
-        <ChevronUp strokeWidth={1} size={28} />
+        <svg
+          viewBox="0 0 20 20"
+          strokeLinecap="round"
+          className="h-5 w-5 stroke-zinc-100 stroke-1 dark:stroke-zinc-800"
+        >
+          <motion.path
+            d="M 2 2.5 L 20 2.5"
+            variants={{
+              open: { d: 'M 3 16.5 L 17 2.5' },
+              closed: { d: 'M 2 2.5 L 20 2.5' },
+            }}
+          />
+          <motion.path
+            d="M 2 9.423 L 20 9.423"
+            variants={{
+              open: { opacity: '0' },
+              closed: { opacity: '1' },
+            }}
+          />
+          <motion.path
+            d="M 2 16.346 L 20 16.346"
+            variants={{
+              open: { d: 'M 3 2.5 L 17 16.346' },
+              closed: { d: 'M 2 16.346 L 20 16.346' },
+            }}
+          />
+        </svg>
       </motion.label>
     </div>
   )
