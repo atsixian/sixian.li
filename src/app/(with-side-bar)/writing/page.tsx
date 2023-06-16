@@ -28,14 +28,17 @@ export default function Writing() {
   )
 
   return (
-    <div className="flex flex-col gap-3">
-      {years.map(year => (
-        <section key={year} className="border-b border-b-zinc-200 pb-4">
-          <h2 className="mb-3 text-3xl">{year}</h2>
-          <ArticlesByYear articles={articlesByYear[year]} />
-        </section>
-      ))}
-    </div>
+    <>
+      <h1 className="mobile-header">Writing</h1>
+      <div className="flex flex-col gap-3">
+        {years.map(year => (
+          <section key={year} className="border-b border-b-zinc-200 pb-4">
+            <h2 className="mb-3 text-3xl">{year}</h2>
+            <ArticlesByYear articles={articlesByYear[year]} />
+          </section>
+        ))}
+      </div>
+    </>
   )
 }
 

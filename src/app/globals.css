@@ -22,6 +22,12 @@
   }
 }
 
+@layer components {
+  .mobile-header {
+    @apply md:hidden text-3xl tracking-tight font-bold my-5 z-20 sticky;
+  }
+}
+
 html {
   @apply scroll-pt-14 scroll-smooth;
 }

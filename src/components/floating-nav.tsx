@@ -1,8 +1,11 @@
 'use client'
+import { Moon } from '@/app/moon'
+import clsx from 'clsx'
 import { motion, Variants } from 'framer-motion'
 import { ChevronUp } from 'lucide-react'
 import NextLink from 'next/link'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { usePathname } from 'next/navigation'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { NAV_LINKS, SOCIAL_LINKS } from './sidebar'
 
 const navItemVariants: Variants = {
@@ -52,11 +55,16 @@ const blurBgVariants: Variants = {
 
 export function FloatingNav() {
   const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname()
+
+  useEffect(() => {
+    setIsOpen(false)
+  }, [pathname])
 
   return (
     <motion.div
-      className="md:hidden"
       initial={false}
+      className="md:hidden"
       animate={isOpen ? 'open' : 'closed'}
       variants={{
         open: { transition: { staggerChildren: 0.1 } },
@@ -108,6 +116,8 @@ function BlurBg() {
 }
 
 function NavItems() {
+  const currentRoute = usePathname()
+
   return (
     <nav className="fixed bottom-20 right-7 z-[99]">
       <motion.ul
@@ -119,9 +129,23 @@ function NavItems() {
           },
         }}
       >
+        <motion.li className="flex" variants={navItemVariants}>
+          <NextLink href="/" aria-label="home" className="m-auto">
+            <Moon />
+          </NextLink>
+        </motion.li>
         {NAV_LINKS.map(link => (
           <motion.li key={link.href} variants={navItemVariants}>
-            <NextLink href={link.href} className="text-2xl tracking-tight">
+            <NextLink
+              href={link.href}
+              className={clsx(
+                'text-2xl tracking-tight',
+                currentRoute !== '/' &&
+                  (currentRoute?.startsWith(link.href)
+                    ? 'shadow-current drop-shadow'
+                    : '[&:not(:hover)]:opacity-50')
+              )}
+            >
               {link.node}
             </NextLink>
           </motion.li>
