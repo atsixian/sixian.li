@@ -9,11 +9,14 @@ export const metadata = {
 export default function Talks() {
   allTalks.sort((t1, t2) => t1.order - t2.order)
   return (
-    <div className="mb-5 flex flex-col gap-6">
-      {allTalks.map(talk => (
-        <TalkCard key={talk.title} talk={talk} />
-      ))}
-    </div>
+    <>
+      <h1 className="mobile-header">Talks</h1>
+      <div className="mb-5 flex flex-col gap-6">
+        {allTalks.map(talk => (
+          <TalkCard key={talk.title} talk={talk} />
+        ))}
+      </div>
+    </>
   )
 }
 
