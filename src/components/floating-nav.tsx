@@ -92,7 +92,7 @@ function NavButton({
         type="checkbox"
         checked={isOpen}
         onChange={() => setIsOpen(prev => !prev)}
-        className="appearance-none"
+        className="hidden appearance-none"
       />
       <motion.label
         htmlFor="menu"
