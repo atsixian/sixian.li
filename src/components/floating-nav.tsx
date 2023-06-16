@@ -86,7 +86,7 @@ function NavButton({
   setIsOpen: Dispatch<SetStateAction<boolean>>
 }) {
   return (
-    <div className="fixed bottom-4 right-4 z-[99] flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 drop-shadow-md">
+    <div className="fixed bottom-4 right-4 z-[99] flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 drop-shadow-md dark:bg-zinc-100">
       <input
         id="menu"
         type="checkbox"
@@ -96,7 +96,7 @@ function NavButton({
       />
       <motion.label
         htmlFor="menu"
-        className="text-zinc-100"
+        className="text-zinc-100 dark:text-zinc-800"
         variants={arrowVariants}
         style={{ originY: 0.55 }}
       >
