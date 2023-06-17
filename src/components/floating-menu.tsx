@@ -28,6 +28,7 @@ export function FloatingMenu({
       onClick={() => {
         setIsOpen(false)
       }}
+      className="md:hidden"
     >
       <Toggle isOpen={isOpen} setIsOpen={setIsOpen}>
         {icon}

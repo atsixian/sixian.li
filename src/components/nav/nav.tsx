@@ -41,6 +41,10 @@ export const SOCIAL_LINKS: Link[] = [
 ]
 
 export function Nav() {
-  const isMdScreen = useMediaQuery('(min-width: 768px)')
-  return isMdScreen ? <SideNav /> : <FloatingNav />
+  return (
+    <>
+      <SideNav />
+      <FloatingNav />
+    </>
+  )
 }
