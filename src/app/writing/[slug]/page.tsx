@@ -69,14 +69,14 @@ export default async function Article({ params }: ArticleProps) {
   return (
     <>
       <ToC headings={headings} />
-      <main className="w-full px-6 md:w-[60ch]">
-        <div>
-          <DateTime date={article.date}/>
+      <main className="w-full px-6 pt-6 md:w-[60ch] md:pt-0">
+        <div className="sticky z-20 md:block">
+          <DateTime date={article.date} />
           <h1 className="mb-5 mt-1 text-3xl font-bold dark:text-white">
             <Balancer>{article.title}</Balancer>
           </h1>
           <Mdx code={article.body.code} />
-          <p className="prose mb-10 border-y border-dashed border-zinc-400 p-6 text-center font-sans dark:prose-invert md:p-8">
+          <p className="prose mb-10 border-y border-dashed border-zinc-400 py-6 text-center font-sans dark:prose-invert md:p-8">
             欢迎通过{' '}
             <NextLink href="https://twitter.com/noworkforsixian">
               Twitter
