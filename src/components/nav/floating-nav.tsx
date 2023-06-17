@@ -2,8 +2,8 @@
 import clsx from 'clsx'
 import { motion, Variants } from 'framer-motion'
 import { usePathname } from 'next/navigation'
-import { FloatingMenu } from './floating-menu'
-import { NAV_LINKS, SOCIAL_LINKS } from './sidebar'
+import { FloatingMenu } from '../floating-menu'
+import { NAV_LINKS, SOCIAL_LINKS } from './nav'
 import NextLink from 'next/link'
 import { Moon } from '@/components/moon'
 

@@ -1,5 +1,4 @@
-import { FloatingNav } from '@/components/floating-nav'
-import { Sidebar } from '@/components/sidebar'
+import { Nav } from '@/components/nav/nav'
 
 export default function SiderbarLayout({
   children,
@@ -8,8 +7,7 @@ export default function SiderbarLayout({
 }) {
   return (
     <>
-      <FloatingNav />
-      <Sidebar />
+      <Nav />
       <main className="w-full px-6 md:w-[60ch]">{children}</main>
     </>
   )
