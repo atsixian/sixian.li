@@ -12,7 +12,7 @@ export type TocProps = {
 }
 
 export function ToC({ headings }: TocProps) {
-  const [ids, setIds] = useState<String[]>([])
+  const [ids, setIds] = useState<string[]>([])
   const { activeId } = useHeadingObserver()
 
   useEffect(() => {

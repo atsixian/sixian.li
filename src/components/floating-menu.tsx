@@ -1,0 +1,109 @@
+'use client'
+import { motion, Variants } from 'framer-motion'
+import { List } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import * as React from 'react'
+
+export function FloatingMenu({
+  children,
+  icon,
+}: {
+  children: React.ReactNode
+  icon: React.ReactNode
+}) {
+  const [isOpen, setIsOpen] = React.useState(false)
+  const pathname = usePathname()
+
+  React.useEffect(() => {
+    setIsOpen(false)
+  }, [pathname])
+
+  return (
+    <motion.div
+      initial={false}
+      className="md:hidden"
+      animate={isOpen ? 'open' : 'closed'}
+      variants={{
+        open: { transition: { staggerChildren: 0.1 } },
+        closed: { transition: { staggerChildren: 0.1, staggerDirection: -1 } },
+      }}
+    >
+      <Toggle isOpen={isOpen} setIsOpen={setIsOpen}>
+        {icon}
+      </Toggle>
+      <BlurBg />
+
+      <Content>{children}</Content>
+    </motion.div>
+  )
+}
+
+type ToggleProps = {
+  isOpen: boolean
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+  children: React.ReactNode
+}
+
+function Toggle({ isOpen, setIsOpen, children }: ToggleProps) {
+  return (
+    <div className="fixed bottom-4 right-4 z-[99] flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 drop-shadow-md dark:bg-zinc-100">
+      <input
+        id="menu"
+        type="checkbox"
+        checked={isOpen}
+        onChange={() => setIsOpen(prev => !prev)}
+        className="hidden appearance-none"
+      />
+      <label htmlFor="menu" className="text-zinc-100 dark:text-zinc-800">
+        {children}
+      </label>
+    </div>
+  )
+}
+
+function BlurBg() {
+  const blurBgVariants: Variants = {
+    open: {
+      clipPath: 'circle(140% at 95% 95%)',
+      opacity: '100%',
+      transition: {
+        opacity: {
+          duration: 0.5,
+        },
+      },
+    },
+    closed: {
+      clipPath: 'circle(0% at 95% 95%)',
+      opacity: '0%',
+      transition: {
+        opacity: {
+          duration: 0.5,
+        },
+      },
+    },
+  }
+  return (
+    <motion.div
+      className="fixed inset-0 z-[98] h-full w-full bg-bg-color/80 backdrop-blur-md"
+      variants={blurBgVariants}
+    ></motion.div>
+  )
+}
+
+function Content({ children }: { children: React.ReactNode }) {
+  return (
+    <nav className="fixed bottom-20 right-7 z-[99]">
+      <motion.ul
+        className="flex flex-col items-end gap-2"
+        variants={{
+          open: { transition: { staggerChildren: 0.05 } },
+          closed: {
+            transition: { staggerDirection: -1, staggerChildren: 0.05 },
+          },
+        }}
+      >
+        {children}
+      </motion.ul>
+    </nav>
+  )
+}
