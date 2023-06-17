@@ -40,7 +40,7 @@ export function ToC({ headings }: TocProps) {
               href={`#${ids[idx]}`}
               className={clsx(
                 linkStyle,
-                activeId == ids[idx] &&
+                activeId === ids[idx] &&
                   'text-fg-color shadow-current drop-shadow'
               )}
             >
@@ -51,12 +51,12 @@ export function ToC({ headings }: TocProps) {
       </ul>
     </nav>
   ) : (
-    <FloatingToC headings={headings.filter(h => h.level == 2)} />
+    <FloatingToC headings={headings.filter(h => h.level === 2)} />
   )
 }
 
 export function FloatingToC({ headings }: TocProps) {
-  const h2Headings = headings.filter(h => h.level == 2)
+  const h2Headings = headings.filter(h => h.level === 2)
   const { ids, activeId } = useHeadingObserver('article > h2')
 
   const tocIcon = (
@@ -77,7 +77,7 @@ export function FloatingToC({ headings }: TocProps) {
             href={`#${ids[idx]}`}
             className={clsx(
               'text-xl tracking-tight',
-              activeId == ids[idx] ? 'shadow-current drop-shadow' : 'opacity-80'
+              activeId === ids[idx] ? 'shadow-current drop-shadow' : 'opacity-70'
             )}
           >
             {h.text}

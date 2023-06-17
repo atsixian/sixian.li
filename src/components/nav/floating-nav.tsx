@@ -64,7 +64,7 @@ function NavItems() {
               currentRoute !== '/' &&
                 (currentRoute?.startsWith(link.href)
                   ? 'shadow-current drop-shadow'
-                  : 'opacity-50')
+                  : 'opacity-70')
             )}
           >
             {link.node}
