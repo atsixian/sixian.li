@@ -9,7 +9,7 @@ export function SideNav() {
   const currentRoute = usePathname()
 
   return (
-    <nav className="top-32 -ml-20 hidden w-20 md:block">
+    <nav className="top-32 -ml-20 hidden w-20 md:sticky md:block">
       <ul className="flex flex-col justify-between gap-4">
         <li className="flex">
           <NextLink href="/" aria-label="home" className="m-auto">
