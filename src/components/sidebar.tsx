@@ -45,14 +45,14 @@ export function Sidebar() {
   const currentRoute = usePathname()
 
   return (
-    <nav className="z-20 hidden w-full p-6 md:sticky md:top-32 md:-ml-20 md:block md:w-20 md:p-0">
-      <ul className="flex flex-row justify-between gap-2 md:flex-col md:justify-between md:gap-4">
+    <nav className="sticky top-32 -ml-20 hidden w-20 md:block">
+      <ul className="flex flex-col justify-between gap-4">
         <li className="flex">
           <NextLink href="/" aria-label="home" className="m-auto">
             <Moon />
           </NextLink>
         </li>
-        <div className="group mr-auto flex flex-row items-center gap-3 text-sm md:m-0 md:flex-col md:text-base">
+        <div className="group flex flex-col items-center gap-3">
           {NAV_LINKS.map(link => (
             <li key={link.href}>
               <Link
@@ -70,7 +70,7 @@ export function Sidebar() {
             </li>
           ))}
         </div>
-        <div className="group flex items-center gap-2 md:flex-col">
+        <div className="group flex flex-col items-center gap-2">
           {SOCIAL_LINKS.map(link => (
             <li key={link.href}>
               <Link

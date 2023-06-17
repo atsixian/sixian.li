@@ -104,7 +104,7 @@ function NavButton({
         <svg
           viewBox="0 0 20 20"
           strokeLinecap="round"
-          className="h-5 w-5 stroke-zinc-100 stroke-1 dark:stroke-zinc-800"
+          className="h-5 w-5 stroke-zinc-100 stroke-[1.5] dark:stroke-zinc-800"
         >
           <motion.path
             d="M 2 2.5 L 20 2.5"
