@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { FloatingMenu } from './floating-menu'
 import { NAV_LINKS, SOCIAL_LINKS } from './sidebar'
 import NextLink from 'next/link'
-import { Moon } from '@/app/moon'
+import { Moon } from '@/components/moon'
 
 const navIcon = (
   <motion.div

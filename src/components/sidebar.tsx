@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import { Github, Rss, Twitter, Youtube } from 'lucide-react'
 import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Moon } from '../app/moon'
+import { Moon } from './moon'
 import { Link } from './link'
 
 type Link = {
