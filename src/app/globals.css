@@ -29,7 +29,7 @@
 }
 
 html {
-  @apply scroll-pt-14 scroll-smooth;
+  @apply scroll-pt-8 md:scroll-pt-14 scroll-smooth;
 }
 
 .prose h2 a,

@@ -1,6 +1,5 @@
 'use client'
 import { motion, Variants } from 'framer-motion'
-import { List } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import * as React from 'react'
 
@@ -21,11 +20,13 @@ export function FloatingMenu({
   return (
     <motion.div
       initial={false}
-      className="md:hidden"
       animate={isOpen ? 'open' : 'closed'}
       variants={{
         open: { transition: { staggerChildren: 0.1 } },
         closed: { transition: { staggerChildren: 0.1, staggerDirection: -1 } },
+      }}
+      onClick={() => {
+        setIsOpen(false)
       }}
     >
       <Toggle isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -46,7 +47,12 @@ type ToggleProps = {
 
 function Toggle({ isOpen, setIsOpen, children }: ToggleProps) {
   return (
-    <div className="fixed bottom-4 right-4 z-[99] flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 drop-shadow-md dark:bg-zinc-100">
+    <div
+      className="fixed bottom-4 right-4 z-[99] flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 drop-shadow-md dark:bg-zinc-100"
+      onClick={e => {
+        e.stopPropagation()
+      }}
+    >
       <input
         id="menu"
         type="checkbox"
@@ -96,9 +102,9 @@ function Content({ children }: { children: React.ReactNode }) {
       <motion.ul
         className="flex flex-col items-end gap-2"
         variants={{
-          open: { transition: { staggerChildren: 0.05 } },
+          open: { transition: { staggerChildren: 0.02 } },
           closed: {
-            transition: { staggerDirection: -1, staggerChildren: 0.05 },
+            transition: { staggerDirection: -1, staggerChildren: 0.02 },
           },
         }}
       >

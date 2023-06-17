@@ -1,10 +1,14 @@
 import { useEffect, useState, useRef } from 'react'
 
-export const selector = 'article > h2, article > h3, article > h4'
+const defaultSelector = 'article > h2, article > h3, article > h4'
 
-export function useHeadingObserver() {
+export function useHeadingObserver(selector: string = defaultSelector): {
+  ids: string[]
+  activeId: string
+} {
   const observer = useRef<IntersectionObserver>()
   const [activeId, setActiveId] = useState('')
+  const [ids, setIds] = useState<string[]>([])
 
   useEffect(() => {
     const handleObsever: IntersectionObserverCallback = entries => {
@@ -19,11 +23,12 @@ export function useHeadingObserver() {
       rootMargin: '-40% 0% -40% 0%',
     })
 
-    const elements = document.querySelectorAll(selector)
-    elements.forEach(elem => observer.current?.observe(elem))
+    const headings = document.querySelectorAll(selector)
+    setIds([...headings].map(h => h.id))
+    headings.forEach(elem => observer.current?.observe(elem))
 
     return () => observer.current?.disconnect()
   }, [])
 
-  return { activeId }
+  return { ids, activeId }
 }

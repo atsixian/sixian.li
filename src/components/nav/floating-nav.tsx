@@ -1,11 +1,12 @@
 'use client'
 import clsx from 'clsx'
-import { motion, Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import { FloatingMenu } from '../floating-menu'
 import { NAV_LINKS, SOCIAL_LINKS } from './nav'
 import NextLink from 'next/link'
 import { Moon } from '@/components/moon'
+import { navItemVariants } from '../common'
 
 const navIcon = (
   <motion.div
@@ -45,25 +46,6 @@ const navIcon = (
 )
 
 function NavItems() {
-  const navItemVariants: Variants = {
-    open: {
-      x: '0',
-      opacity: '100%',
-      transition: {
-        type: 'spring',
-        duration: 0.5,
-      },
-    },
-    closed: {
-      x: '30vw',
-      opacity: '0%',
-      transition: {
-        type: 'spring',
-        duration: 0.5,
-      },
-    },
-  }
-
   const currentRoute = usePathname()
 
   return (

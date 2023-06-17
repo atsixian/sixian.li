@@ -42,7 +42,7 @@ export default function RootLayout({
         <div
           aria-hidden
           className={clsx(
-            'pointer-events-none fixed top-0 z-10 h-20 w-full select-none',
+            'pointer-events-none fixed top-0 z-10 h-14 w-full select-none md:h-20',
             'bg-gradient-to-t from-transparent to-bg-color/80',
             'backdrop-blur',
             'gradient-mask-b-0'
