@@ -15,7 +15,7 @@ export type TocProps = {
 }
 
 export function ToC({ headings }: TocProps) {
-  const { ids, activeId, setActiveId } = useHeadings()
+  const { ids, activeId } = useHeadings()
 
   return (
     <>
@@ -43,9 +43,6 @@ export function ToC({ headings }: TocProps) {
                     activeId === id &&
                       'text-fg-color shadow-current drop-shadow'
                   )}
-                  onClick={() => {
-                    setActiveId(id)
-                  }}
                 >
                   {h.text}
                 </a>

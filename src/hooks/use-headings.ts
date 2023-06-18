@@ -1,11 +1,10 @@
-import { useEffect, useState, useRef, Dispatch, SetStateAction } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const defaultSelector = 'article > h2, article > h3, article > h4'
 
 export function useHeadings(selector: string = defaultSelector): {
   ids: string[]
   activeId: string
-  setActiveId: Dispatch<SetStateAction<string>>
 } {
   const observer = useRef<IntersectionObserver>()
   const [activeId, setActiveId] = useState('')
@@ -31,5 +30,5 @@ export function useHeadings(selector: string = defaultSelector): {
     return () => observer.current?.disconnect()
   }, [])
 
-  return { ids, activeId, setActiveId }
+  return { ids, activeId }
 }
