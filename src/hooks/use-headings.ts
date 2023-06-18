@@ -20,7 +20,7 @@ export function useHeadingObserver(selector: string = defaultSelector): {
     }
 
     observer.current = new IntersectionObserver(handleObsever, {
-      rootMargin: '-40% 0% -40% 0%',
+      rootMargin: '-0% 0% -70% 0%',
     })
 
     const headings = document.querySelectorAll(selector)
