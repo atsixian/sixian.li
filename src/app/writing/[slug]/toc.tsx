@@ -1,7 +1,7 @@
 'use client'
 import { FloatingMenu } from '@/components/floating-menu'
 import { Link, linkStyle } from '@/components/link'
-import { useHeadingObserver } from '@/hooks/use-headings'
+import { useHeadings } from '@/hooks/use-headings'
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
 import { ArrowUpLeft, List } from 'lucide-react'
@@ -15,7 +15,7 @@ export type TocProps = {
 }
 
 export function ToC({ headings }: TocProps) {
-  const { ids, activeId } = useHeadingObserver()
+  const { ids, activeId, setActiveId } = useHeadings()
 
   return (
     <>
@@ -29,23 +29,29 @@ export function ToC({ headings }: TocProps) {
           Writing
         </Link>
         <ul className="group hidden text-zinc-500 lg:block">
-          {headings.map((h, idx) => (
-            <li key={idx} style={{ paddingInlineStart: `${h.level - 2}em` }}>
-              {/* TODO: Use Link when URL hash handling is fixed 
-            https://github.com/vercel/next.js/issues/44295#issuecomment-1457042542
-        */}
-              <a
-                href={`#${ids[idx]}`}
-                className={clsx(
-                  linkStyle,
-                  activeId === ids[idx] &&
-                    'text-fg-color shadow-current drop-shadow'
-                )}
-              >
-                {h.text}
-              </a>
-            </li>
-          ))}
+          {headings.map((h, idx) => {
+            const id = ids[idx]
+            return (
+              <li key={idx} style={{ paddingInlineStart: `${h.level - 2}em` }}>
+                {/* TODO: Use Link when URL hash handling is fixed 
+                https://github.com/vercel/next.js/issues/44295#issuecomment-1457042542
+                */}
+                <a
+                  href={`#${id}`}
+                  className={clsx(
+                    linkStyle,
+                    activeId === id &&
+                      'text-fg-color shadow-current drop-shadow'
+                  )}
+                  onClick={() => {
+                    setActiveId(id)
+                  }}
+                >
+                  {h.text}
+                </a>
+              </li>
+            )
+          })}
         </ul>
       </nav>
       <FloatingToC headings={headings.filter(h => h.level === 2)} />
@@ -55,7 +61,7 @@ export function ToC({ headings }: TocProps) {
 
 export function FloatingToC({ headings }: TocProps) {
   const h2Headings = headings.filter(h => h.level === 2)
-  const { ids, activeId } = useHeadingObserver('article > h2')
+  const { ids, activeId } = useHeadings('article > h2')
 
   const tocIcon = (
     <motion.div
