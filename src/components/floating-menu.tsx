@@ -1,7 +1,7 @@
 'use client'
 import { motion, Variants } from 'framer-motion'
 import { usePathname } from 'next/navigation'
-import * as React from 'react'
+import { useEffect, useState } from 'react'
 
 export function FloatingMenu({
   children,
@@ -10,12 +10,20 @@ export function FloatingMenu({
   children: React.ReactNode
   icon: React.ReactNode
 }) {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIsOpen(false)
   }, [pathname])
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'scroll'
+    }
+  }, [isOpen])
 
   return (
     <motion.div
@@ -49,7 +57,7 @@ type ToggleProps = {
 function Toggle({ isOpen, setIsOpen, children }: ToggleProps) {
   return (
     <div
-      className="fixed bottom-4 right-4 z-[99] flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 drop-shadow-md dark:bg-zinc-100"
+      className="fixed bottom-7 right-7 z-[99] flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 drop-shadow-md dark:bg-zinc-100"
       onClick={e => {
         e.stopPropagation()
       }}
