@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import NextImage from 'next/image'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import NextLink from 'next/link'
 
@@ -20,6 +20,17 @@ const Link = props => {
 
   return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
+
+// @ts-ignore
+const Image = props => (
+  <div className="relative aspect-video w-full">
+    <NextImage
+      fill
+      className='m-0'
+      {...props}
+    />
+  </div>
+)
 
 type MdxProps = {
   code: string

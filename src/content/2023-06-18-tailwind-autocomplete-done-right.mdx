@@ -1,0 +1,149 @@
+---
+title: 'Tailwind CSS: Autocomplete Done Right'
+date: 2023-06-18
+tags:
+  - web
+  - tailwind
+description: How to get autocomplete anywhere you like by customizing the Tailwind CSS IntelliSense VS Code extension
+lang: en-US
+---
+
+import { Video } from '../components/video'
+
+As I get better at using Tailwind CSS, I can see how much it speeds up my development work. With the huge number of class names, autocomplete is particularly important. However, the official Tailwind VS Code extension has a big limitation: the IntelliSense only appears in certain places.
+
+For example, it works well inside the `classname` attribute of a JSX element, but when you want to extract some styles into a string variable or an object for reusability, you lose the autocomplete.
+
+<Video
+  src="https://media.sixian.li/tailwind02-it-doesnt-work.mp4"
+  caption="not working"
+></Video>
+
+## Add custom `classRegex`
+
+To fix this, we can customize an experimental setting called `tailwindCSS.experimental.classRegex`. It lets you specify a list of regular expressions which trigger autocompletion when matched.
+
+Open your settings.json, and the syntax is as follows:
+
+```json
+"tailwindCSS.experimental.classRegex": [
+    "<container with only one classlist>",
+    ["<container regex>", "<class list regex>"]
+]
+```
+
+The regex can either be a string or an array, depending on whether you’re matching one or more class lists. Let’s define the terms:
+
+- A **class list** is a string containing Tailwind classes. For example, `'bg-black h-full text-sm'` is one class list.
+- A **container** contains one or more class lists.
+
+```typescript
+// container with only one class list
+tw`bg-black text-sm`
+
+// same, one class list
+const a = 'bg-black text-sm'
+
+// container with multiple class list
+clsx('bg-black text-sm', 'h-full')
+```
+
+Each regex must contain exactly one [capture group](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Capturing_group), and that’s where the autocomplete pops up.
+
+<Image
+  alt="class list illustration"
+  src="/articles/tailwind-autocomplete/class-list-illustration.png"
+/>
+
+## Example1: Variable assignments
+
+Say we want to have autocomplete in variable assignments for variables ending with “Style”, we use `[^']` to capture anything inside the single quotes that’s not a single quote.
+
+```json
+{
+  "tailwindCSS.experimental.classRegex": [
+    // const linkStyle = 'bg-black text-sm'
+    "Style = '([^']*)'"
+  ]
+}
+```
+
+With this line, you’ll see autocomplete start working immediately:
+
+<Image
+  alt="working for inline variables"
+  src="/articles/tailwind-autocomplete/tailwind-ex1-variable.png"
+/>
+
+To make it more flexible, we can ignore whitespaces and handle double quotes and backticks.
+
+<Video
+  src="https://media.sixian.li/inline-object-demo.mp4"
+  caption="multiline object"
+/>
+
+```json
+{
+  "tailwindCSS.experimental.classRegex": [
+    // const aStyle = 'text-slate'
+    // const bStyle   = `text-zinc-300`
+    // const cStyle =   "text-red-400"
+    "Style\\s*=\\s*['\"`]([^'\"`]*)['\"`]"
+  ]
+}
+```
+
+## Example2: Object
+
+We have multiple class lists inside an object, so we need the array syntax instead of a single string. The first regex matches anything inside `{}`, and the second one matches any string in the values.
+
+```json
+{
+  "tailwindCSS.experimental.classRegex": [
+    // const styles = { a: '<class lists>', b: '<class lists>'}
+    ["{(.*)}", ": '([^']*)'"]
+  ]
+}
+```
+
+To handle multiline objects, we can use `[\s\S]` to [match everything including newlines](https://www.perplexity.ai/search/44e9d79e-3765-419a-95b1-ed18e5b3c132?s=c). And we use the regex above to handle whitespaces and other quotes.
+
+```json
+{
+  "tailwindCSS.experimental.classRegex": [
+    // object
+    //   const styles = {
+    //      a: 'bg-black text-ellipsis',
+    //      b:        'text-sm',
+    // }
+    ["{([\\s\\S]*)}", ":\\s*['\"`]([^'\"`]*)['\"`]"]
+  ]
+}
+```
+
+Now we have a fully working Tailwind autocomplete for objects!
+
+<Video
+  src="https://media.sixian.li/multiline-object.mp4"
+  caption="multiline object"
+/>
+
+## Bonus
+
+A useful trick I learned from this [tweet](https://twitter.com/zuozizhen/status/1614519138420150272?s=20) is to turn on `editor.quickSuggestions` on strings, so we can trigger suggestions while typing in the string instead of relying on whitespace as the trigger.
+
+```json
+"editor.quickSuggestions": {
+  "strings": "on"
+}
+```
+
+<Video src="https://media.sixian.li/string-on.mp4" caption="string on" />
+<Video src="https://media.sixian.li/string-off.mp4" caption="string off" />
+
+## Resources
+
+- [https://github.com/tailwindlabs/tailwindcss/issues/7553#issuecomment-735915659](https://github.com/tailwindlabs/tailwindcss/issues/7553#issuecomment-735915659)
+- [https://github.com/paolotiu/tailwind-intellisense-regex-list](https://github.com/paolotiu/tailwind-intellisense-regex-list)
+- [https://www.paolotiu.com/blog/get-tailwind-intellisense-anywhere](https://www.paolotiu.com/blog/get-tailwind-intellisense-anywhere)
+- [https://twitter.com/zuozizhen/status/1614519138420150272?s=20](https://twitter.com/zuozizhen/status/1614519138420150272?s=20)

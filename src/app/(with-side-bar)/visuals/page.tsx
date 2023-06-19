@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Visuals | Sixian Li',
+  title: 'Visuals',
   description: 'Creative visual explorations',
 }
 
