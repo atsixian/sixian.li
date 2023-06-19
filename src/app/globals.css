@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (prefers-color-scheme: dark) {
+  pre[data-theme='light'],
+  code[data-theme='light'] {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+  pre[data-theme='dark'],
+  code[data-theme='dark'] {
+    display: none;
+  }
+}
+
 @layer base {
   :root {
     --bg-color: 255 255 255;
@@ -49,6 +63,10 @@ html {
 .prose h3 a:hover::before,
 .prose h4 a:hover::before {
   @apply opacity-100;
+}
+
+.prose pre {
+  @apply bg-neutral-50 dark:bg-neutral-800;
 }
 
 .prose a {

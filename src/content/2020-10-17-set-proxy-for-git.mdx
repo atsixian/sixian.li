@@ -50,7 +50,7 @@ $ git config --global --unset https.proxy
 
 这需要修改`~/.ssh/config`（如果没有则新建）。将以下代码加入`config`文件，填入你的`ip`和`port`：
 
-```
+```shell
 Host github.com
    HostName github.com
    User git
@@ -61,7 +61,7 @@ Host github.com
 
 对于 GitHub ，可以利用[insteadOf](https://stackoverflow.com/a/12752300/9407207) 来快速实现：
 
-```
+```shell
 git config --global url.https://github.com/.insteadOf git://github.com/
 ```
 

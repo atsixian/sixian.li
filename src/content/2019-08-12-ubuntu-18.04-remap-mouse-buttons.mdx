@@ -118,7 +118,7 @@ looking at parent device '/devices/pci0000:00/0000:00:14.0/usb1/1-7':
 
 Now we have enough info to write the `88-remapmouse.rules`:
 
-```
+```text
 ACTION=="add",\
 SUBSYSTEMS=="usb",\
 ATTRS{idProduct}=="0a2b",\

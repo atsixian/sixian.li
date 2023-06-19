@@ -4,6 +4,8 @@ import remarkMath from 'remark-math'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypePrettyCode from 'rehype-pretty-code'
+import fs from 'fs'
+import path from 'path'
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
@@ -58,7 +60,20 @@ export default makeSource({
       [
         rehypePrettyCode,
         {
-          theme: 'nord',
+          theme: {
+            dark: JSON.parse(
+              fs.readFileSync(
+                path.resolve('./code-block-themes/dark.json'),
+                'utf-8'
+              )
+            ),
+            light: JSON.parse(
+              fs.readFileSync(
+                path.resolve('./code-block-themes/light.json'),
+                'utf-8'
+              )
+            ),
+          },
           onVisitLine(node) {
             // Prevent lines from collapsing in `display: grid` mode, and allow empty
             // lines to be copy/pasted
