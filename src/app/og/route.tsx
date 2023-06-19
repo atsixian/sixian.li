@@ -25,14 +25,14 @@ export async function GET(request: Request) {
           <div
             lang={lang}
             style={{
-              margin: '85px 120px 230px 80px',
+              margin: '85px 300px 230px 80px',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'flex-start',
               justifyContent: 'center',
               fontSize: 64,
               letterSpacing: '-0.05em',
-              lineHeight: '120px',
+              lineHeight: '80px',
               whiteSpace: 'pre-wrap',
               color: '#262626',
               fontWeight: 'bold',
