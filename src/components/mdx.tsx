@@ -1,6 +1,7 @@
 import NextImage from 'next/image'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import NextLink from 'next/link'
+import clsx from 'clsx'
 
 // @ts-ignore
 const Link = props => {
@@ -15,20 +16,23 @@ const Link = props => {
   }
 
   if (href.startsWith('#')) {
-    return <a {...props} />
+    return <a {...props} className="break-words" />
   }
 
-  return <a target="_blank" rel="noopener noreferrer" {...props} />
+  return (
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      {...props}
+      className={clsx('break-words', props.className)}
+    />
+  )
 }
 
 // @ts-ignore
 const Image = props => (
   <div className="relative aspect-video w-full">
-    <NextImage
-      fill
-      className='m-0'
-      {...props}
-    />
+    <NextImage fill className="m-0" {...props} />
   </div>
 )
 
