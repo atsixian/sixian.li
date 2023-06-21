@@ -1,7 +1,8 @@
 'use client'
 import { useMediaQuery } from '@/hooks/use-media-query'
-import { Github, Rss, Twitter, Youtube } from 'lucide-react'
+import { Github, Mail, Rss, Twitter, Youtube } from 'lucide-react'
 import { Link } from '../link'
+import { MyEmail } from '../my-email'
 import { FloatingNav } from './floating-nav'
 import { SideNav } from './sidenav'
 
@@ -32,6 +33,15 @@ export const SOCIAL_LINKS: Link[] = [
     node: <Github />,
     href: 'https://github.com/Deerhound579/sixian.li',
     ariaLabel: 'GitHub repo for this site',
+  },
+  {
+    node: (
+      <MyEmail>
+        <Mail />
+      </MyEmail>
+    ),
+    href: '',
+    ariaLabel: 'My Email',
   },
   {
     node: <Rss />,
