@@ -107,7 +107,7 @@ function BlurBg() {
 
 function Content({ children }: { children: React.ReactNode }) {
   return (
-    <nav className="fixed bottom-20 right-7 z-[99] max-w-[60%] text-end">
+    <nav className="pointer-events-none fixed bottom-20 right-7 z-[99] max-w-[60%] select-none text-end">
       <motion.ul
         className="flex flex-col items-end gap-2"
         variants={{

@@ -86,8 +86,7 @@ export default async function Article({ params }: ArticleProps) {
             <NextLink href="https://twitter.com/noworkforsixian">
               Twitter
             </NextLink>{' '}
-            或<MyEmail>邮件</MyEmail>
-            告诉我你的想法
+            或<MyEmail>邮件</MyEmail>告诉我你的想法
             <br />
             Find me on{' '}
             <NextLink href="https://twitter.com/noworkforsixian">
