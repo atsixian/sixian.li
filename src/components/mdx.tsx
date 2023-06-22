@@ -32,7 +32,7 @@ const Link = props => {
 // @ts-ignore
 const Image = props => (
   <div className="relative aspect-video w-full">
-    <NextImage fill className="m-0" {...props} />
+    <NextImage fill className="m-0 object-contain" {...props} />
   </div>
 )
 
