@@ -16,7 +16,7 @@ export function SideNav() {
             <Moon />
           </NextLink>
         </li>
-        <div className="group flex flex-col items-center gap-3">
+        <div className="group flex flex-col items-center gap-1">
           {NAV_LINKS.map(link => (
             <li key={link.href}>
               <Link
