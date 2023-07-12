@@ -69,7 +69,7 @@ export default async function Article({ params }: ArticleProps) {
   return (
     <>
       <ToC headings={headings} />
-      <main className="w-full px-6 md:w-[60ch]">
+      <main className="w-full px-6 md:max-w-2xl">
         <div>
           <div className="sticky z-20 pt-6 md:block">
             <DateTime date={article.date} />

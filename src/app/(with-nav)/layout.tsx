@@ -1,6 +1,6 @@
 import { Nav } from '@/components/nav/nav'
 
-export default function SiderbarLayout({
+export default function LayoutWithNav({
   children,
 }: {
   children: React.ReactNode
@@ -8,7 +8,7 @@ export default function SiderbarLayout({
   return (
     <>
       <Nav />
-      <main className="w-full px-6 md:w-[60ch]">{children}</main>
+      <main className="w-full px-6 md:max-w-2xl">{children}</main>
     </>
   )
 }

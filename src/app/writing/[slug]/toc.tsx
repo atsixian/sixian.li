@@ -19,16 +19,16 @@ export function ToC({ headings }: TocProps) {
 
   return (
     <>
-      <nav className="sticky hidden overflow-y-scroll p-6 md:top-32 md:block md:w-32 lg:-ml-56 lg:w-56">
-        <Link href="/writing" className="group mb-4 flex items-center gap-1">
+      <nav className="sticky hidden overflow-y-scroll p-6 md:top-32 md:block md:w-32 lg:-ml-52 lg:w-52">
+        <Link href="/writing" className="group mb-12 flex items-center gap-1">
           <ArrowUpLeft
             size={16}
             strokeWidth={1.5}
-            className="transition-transform group-hover:-translate-x-[2px] group-hover:-translate-y-[2px]"
+            className="shrink-0 transition-transform group-hover:-translate-x-[2px] group-hover:-translate-y-[2px]"
           />
           Writing
         </Link>
-        <ul className="group hidden text-zinc-500 lg:block">
+        <ul className="group hidden text-sm text-fg-secondary-color lg:flex lg:flex-col lg:gap-2">
           {headings.map((h, idx) => {
             const id = ids[idx]
             return (
