@@ -1,63 +1,24 @@
 {
-  "name": "sixianli",
-  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "analyze": "cross-env ANALYZE=true next build"
-  },
-  "dependencies": {
-    "@mdx-js/loader": "^2.3.0",
-    "@mdx-js/react": "^2.3.0",
-    "@next/mdx": "^13.4.3",
-    "@types/mdx": "^2.0.5",
-    "@types/node": "20.2.1",
-    "@types/react": "18.2.6",
-    "@types/react-dom": "18.2.4",
-    "autoprefixer": "10.4.14",
-    "clsx": "^1.2.1",
-    "contentlayer": "^0.3.2",
-    "eslint": "8.41.0",
-    "eslint-config-next": "13.4.3",
-    "framer-motion": "^10.12.16",
-    "lucide-react": "^0.220.0",
-    "next": "13.4.3",
-    "next-contentlayer": "^0.3.2",
-    "npm": "^9.6.7",
-    "postcss": "8.4.23",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-obfuscate-email": "^1.1.2",
-    "react-wrap-balancer": "^0.5.0",
-    "rehype-autolink-headings": "^6.1.1",
-    "rehype-katex": "^6.0.3",
-    "rehype-pretty-code": "^0.9.6",
-    "rehype-slug": "^5.1.0",
-    "remark-math": "^5.1.1",
-    "rss": "^1.2.2",
-    "shiki": "^0.14.2",
-    "tailwindcss": "3.3.2",
-    "typescript": "5.0.4"
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "lint:fix": "turbo lint:fix",
+    "clean": "turbo clean",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^13.4.4",
-    "@tailwindcss/typography": "^0.5.9",
-    "@types/rss": "^0.0.30",
-    "cross-env": "^7.0.3",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-mdx": "^2.1.0",
-    "eslint-plugin-tailwindcss": "^3.12.0",
-    "lint-staged": "^13.2.2",
-    "next-compose-plugins": "^2.2.1",
-    "prettier": "^2.8.8",
-    "sass": "^1.62.1",
-    "simple-git-hooks": "^2.8.1",
-    "tailwind-gradient-mask-image": "^1.0.0"
+    "eslint": "^8.47.0",
+    "prettier": "^3.0.2",
+    "prettier-plugin-tailwindcss": "^0.5.3",
+    "simple-git-hooks": "^2.9.0",
+    "tsconfig": "workspace:*",
+    "turbo": "latest"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged"
-  }
+    "pre-commit": "pnpm lint:fix",
+    "pre-push": "pnpm format"
+  },
+  "packageManager": "pnpm@8.6.10"
 }

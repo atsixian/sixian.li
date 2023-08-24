@@ -8,6 +8,7 @@ I still love orange, but I found monochrome to be more timeless and peaceful.
 
 Built with
 
+- [Turborepo](https://turbo.build)
 - [Next.js](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com)
 - [MDX](https://mdxjs.com)
