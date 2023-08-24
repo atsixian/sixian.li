@@ -23,7 +23,7 @@ export default function Talks() {
 
 function TalkCard({ talk }: { talk: Talk }) {
   return (
-    <div className="rounded border border-zinc-300 bg-zinc-50 p-1 shadow-md dark:border-zinc-600 dark:bg-zinc-800 dark:shadow-none font-sans">
+    <div className="rounded border border-zinc-300 bg-zinc-50 p-1 font-sans shadow-md dark:border-zinc-600 dark:bg-zinc-800 dark:shadow-none">
       <iframe
         title={talk.title}
         src={talk.url}

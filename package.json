@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "eslint": "^8.47.0",
+    "lint-staged": "^14.0.1",
     "prettier": "^3.0.2",
     "prettier-plugin-tailwindcss": "^0.5.3",
     "simple-git-hooks": "^2.9.0",
@@ -17,8 +18,7 @@
     "turbo": "latest"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm lint:fix",
-    "pre-push": "pnpm format"
+    "pre-commit": "pnpm lint-staged"
   },
   "packageManager": "pnpm@8.6.10"
 }
