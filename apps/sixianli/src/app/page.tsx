@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Nav />
-      <main className="mb-5 w-full px-6 md:max-w-2xl">
+      <main className="mb-5 w-full px-6 md:w-fit md:max-w-2xl">
         <article className="prose prose-zinc dark:prose-invert prose-h1:mb-5">
           <h1 className="mobile-header md:static md:my-0 md:block">
             Sixian Li
