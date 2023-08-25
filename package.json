@@ -6,9 +6,13 @@
     "lint": "turbo lint",
     "lint:fix": "turbo lint:fix",
     "clean": "turbo clean",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo build --filter=docs^... && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.26.2",
     "eslint": "^8.47.0",
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.2",
