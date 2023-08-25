@@ -1,6 +1,6 @@
 {
   "name": "magtext",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Magnetic hover effect for your text",
   "author": "Sixian<https://github.com/atsixian>",
   "source": "./src/index.ts",
@@ -9,9 +9,9 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
+      "import": "./dist/index.mjs"
     }
   },
   "sideEffects": false,
