@@ -25,7 +25,7 @@ importers:
         version: 2.9.0
       tsconfig:
         specifier: workspace:*
-        version: link:packages/tsconfig
+        version: link:configs/tsconfig
       turbo:
         specifier: latest
         version: 1.10.13
@@ -131,7 +131,7 @@ importers:
         version: 7.0.3
       eslint-config-custom:
         specifier: workspace:*
-        version: link:../../packages/eslint-config-custom
+        version: link:../../configs/eslint-config-custom
       eslint-plugin-mdx:
         specifier: ^2.1.0
         version: 2.1.0(eslint@8.47.0)
@@ -146,7 +146,7 @@ importers:
         version: 1.66.1
       tailwind-config:
         specifier: workspace:*
-        version: link:../../packages/tailwind-config
+        version: link:../../configs/tailwind-config
       tailwind-gradient-mask-image:
         specifier: ^1.0.0
         version: 1.0.0
@@ -157,7 +157,7 @@ importers:
         specifier: ^5.1.6
         version: 5.1.6
 
-  packages/eslint-config-custom:
+  configs/eslint-config-custom:
     devDependencies:
       '@vercel/style-guide':
         specifier: ^4.0.2
@@ -169,13 +169,13 @@ importers:
         specifier: ^3.13.0
         version: 3.13.0(tailwindcss@3.3.3)
 
-  packages/tailwind-config:
+  configs/tailwind-config:
     devDependencies:
       tailwindcss:
         specifier: ^3.2.4
         version: 3.3.3
 
-  packages/tsconfig: {}
+  configs/tsconfig: {}
 
 packages:
 
@@ -361,6 +361,7 @@ packages:
   /@babel/parser@7.22.10:
     resolution: {integrity: sha512-lNbdGsQb9ekfsnjFGhEiF4hfFqGgfOP3H3d27re3n+CGhNuTSUEQdfWk556sTLNTloczcdM5TYF2LhzmDQKyvQ==}
     engines: {node: '>=6.0.0'}
+    hasBin: true
     dependencies:
       '@babel/types': 7.22.10
     dev: true
@@ -4368,6 +4369,7 @@ packages:
   /jsesc@2.5.2:
     resolution: {integrity: sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==}
     engines: {node: '>=4'}
+    hasBin: true
     dev: true
 
   /json-parse-even-better-errors@2.3.1:
@@ -4387,6 +4389,7 @@ packages:
 
   /json5@1.0.2:
     resolution: {integrity: sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==}
+    hasBin: true
     dependencies:
       minimist: 1.2.8
     dev: true
@@ -4394,6 +4397,7 @@ packages:
   /json5@2.2.3:
     resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
     engines: {node: '>=6'}
+    hasBin: true
     dev: true
 
   /jsonc-parser@3.2.0:
@@ -6014,6 +6018,7 @@ packages:
 
   /regexp-tree@0.1.27:
     resolution: {integrity: sha512-iETxpjK6YoRWJG5o6hXLwvjYAoW+FEZn9os0PD/b6AP6xQwsa/Y7lCVgIixBbUPMfhu+i2LtdeAqVTgGlQarfA==}
+    hasBin: true
     dev: true
 
   /regexp.prototype.flags@1.5.0:
@@ -6176,6 +6181,7 @@ packages:
 
   /resolve@2.0.0-next.4:
     resolution: {integrity: sha512-iMDbmAWtfU+MHpxt/I5iWI7cY6YVEZUQ3MBgPQ++XD1PELuJHIl82xBmObyP2KyQmkNB2dsqF7seoQQiAn5yDQ==}
+    hasBin: true
     dependencies:
       is-core-module: 2.13.0
       path-parse: 1.0.7
@@ -6290,10 +6296,12 @@ packages:
 
   /semver@5.7.2:
     resolution: {integrity: sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==}
+    hasBin: true
     dev: true
 
   /semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
+    hasBin: true
     dev: true
 
   /semver@7.5.4:
@@ -6392,6 +6400,7 @@ packages:
 
   /sort-package-json@2.5.1:
     resolution: {integrity: sha512-vx/KoZxm8YNMUqdlw7SGTfqR5pqZ/sUfgOuRtDILiOy/3AvzhAibyUe2cY3OpLs3oRSow9up4yLVtQaM24rbDQ==}
+    hasBin: true
     dependencies:
       detect-indent: 7.0.1
       detect-newline: 4.0.0
@@ -6656,6 +6665,7 @@ packages:
   /tailwindcss@3.3.3:
     resolution: {integrity: sha512-A0KgSkef7eE4Mf+nKJ83i75TMyq8HqY3qmFIJSWy8bNt0v1lG7jUcpGpoTFxAwYcWOphcTBLPPJg+bDfhDf52w==}
     engines: {node: '>=14.0.0'}
+    hasBin: true
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
