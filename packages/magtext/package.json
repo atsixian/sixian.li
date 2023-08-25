@@ -1,6 +1,6 @@
 {
-  "name": "@sx/magtext",
-  "version": "1.0.0",
+  "name": "magtext",
+  "version": "0.0.0",
   "description": "Magnetic hover effect for your text",
   "author": "Sixian<https://github.com/atsixian>",
   "source": "./src/index.ts",
