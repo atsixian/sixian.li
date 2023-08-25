@@ -21,7 +21,7 @@ const computedFields = {
 
 export const Article = defineDocumentType(() => ({
   name: 'Article',
-  filePathPattern: `**/*.mdx`,
+  filePathPattern: `articles/**/*.mdx`,
   contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
@@ -48,9 +48,23 @@ export const Talk = defineDocumentType(() => ({
   },
 }))
 
+export const Craft = defineDocumentType(() => ({
+  name: 'Craft',
+  filePathPattern: `craft/**/*.mdx`,
+  contentType: 'mdx',
+  fields: {
+    title: { type: 'string', required: true },
+    description: { type: 'string' },
+    date: { type: 'date', required: true },
+    packageName: { type: 'string' },
+    remixLink: { type: 'string' },
+  },
+  computedFields,
+}))
+
 export default makeSource({
   contentDirPath: './src/content',
-  documentTypes: [Article, Talk],
+  documentTypes: [Article, Talk, Craft],
   mdx: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [

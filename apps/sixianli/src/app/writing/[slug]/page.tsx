@@ -74,12 +74,14 @@ export default function Article({ params }: ArticleProps) {
             <h1 className="mb-2 mt-1 text-3xl font-bold dark:text-white">
               <Balancer>{article.title}</Balancer>
             </h1>
-            <p className="mb-5 text-fg-secondary-color">
+            <p className="mb-12 text-fg-secondary-color">
               <Balancer>{article.description}</Balancer>
             </p>
           </div>
+
           <Mdx code={article.body.code} />
-          <p className="prose mb-10 border-y border-dashed border-zinc-400 py-6 text-center font-sans dark:prose-invert md:p-8">
+
+          <p className="prose mb-10 border-y border-dotted border-zinc-400 py-6 text-center font-sans dark:prose-invert md:p-8">
             欢迎通过{' '}
             <NextLink href="https://twitter.com/noworkforsixian">
               Twitter
