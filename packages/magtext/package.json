@@ -1,0 +1,48 @@
+{
+  "name": "@sx/magtext",
+  "version": "1.0.0",
+  "description": "Magnetic hover effect for your text",
+  "author": "Sixian<https://github.com/atsixian>",
+  "source": "./src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint src/**/*",
+    "dev": "tsup --watch",
+    "check-types": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "framer-motion": "^10.12.16",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.5",
+    "eslint-config-custom": "workspace:*",
+    "framer-motion": "^10.12.16",
+    "react": "^18.2.0",
+    "tsconfig": "workspace:*",
+    "tsup": "^6.1.3",
+    "typescript": "^5.1.6"
+  },
+  "keywords": [
+    "react",
+    "framer-motion",
+    "animation",
+    "text effect"
+  ]
+}

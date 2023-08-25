@@ -14,7 +14,11 @@ Built with
 - [MDX](https://mdxjs.com)
 - [Contentlayer](https://www.contentlayer.dev)
 
-Hosted on [Vercel](https://vercel.com).
+Hosted on [Vercel](https://vercel.com)
+
+### Craft
+
+I'm using this monorepo for the website itself and some cool explorations I made. See [packages](./packages/).
 
 ### Development
 

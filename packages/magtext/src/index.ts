@@ -1,0 +1,1 @@
+export { MagText } from './magtext'
