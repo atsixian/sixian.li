@@ -44,5 +44,8 @@
     "framer-motion",
     "animation",
     "text effect"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
