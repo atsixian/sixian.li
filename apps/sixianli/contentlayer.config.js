@@ -56,6 +56,7 @@ export const Craft = defineDocumentType(() => ({
     title: { type: 'string', required: true },
     description: { type: 'string' },
     date: { type: 'date', required: true },
+    url: { type: 'string' },
     packageName: { type: 'string' },
     remixLink: { type: 'string' },
   },

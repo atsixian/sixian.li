@@ -1,6 +1,11 @@
 import NextLink from 'next/link'
 
-interface Content { date: string; title: string; slug: string }
+interface Content {
+  date: string
+  title: string
+  slug: string
+  url?: string
+}
 
 export function GroupByYear<T extends Content>({
   allItems,
@@ -36,7 +41,7 @@ export function GroupByYear<T extends Content>({
               {itemsByYear[year].map(item => (
                 <NextLink
                   key={item.slug}
-                  href={`/${title.toLowerCase()}/${item.slug}`}
+                  href={item.url ?? `/${title.toLowerCase()}/${item.slug}`}
                   aria-label={item.title}
                 >
                   <div className="group flex flex-row justify-between gap-2">

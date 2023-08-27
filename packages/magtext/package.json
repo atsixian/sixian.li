@@ -5,10 +5,10 @@
   "author": "Sixian<https://github.com/atsixian>",
   "type": "module",
   "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
+      "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     }
   },
@@ -18,11 +18,11 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "unbuild",
+    "build": "tsup",
     "lint": "eslint src/**/*",
-    "dev": "unbuild --stub",
+    "dev": "tsup --watch",
     "check-types": "tsc --noEmit",
-    "prepublishOnly": "npm run check-types && unbuild --minify"
+    "prepublishOnly": "npm run check-types && tsup"
   },
   "peerDependencies": {
     "framer-motion": "^10.12.16",
@@ -35,8 +35,7 @@
     "react": "^18.2.0",
     "tsconfig": "workspace:*",
     "tsup": "^6.1.3",
-    "typescript": "^5.1.6",
-    "unbuild": "^2.0.0"
+    "typescript": "^5.1.6"
   },
   "keywords": [
     "react",
