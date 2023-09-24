@@ -8,7 +8,7 @@ export default function LayoutWithNav({
   return (
     <>
       <Nav />
-      <main className="w-full px-6 md:max-w-2xl">{children}</main>
+      <main className="w-full px-6 md:max-w-xl">{children}</main>
     </>
   )
 }

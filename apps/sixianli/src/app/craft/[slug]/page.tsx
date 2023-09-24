@@ -57,7 +57,7 @@ export default function Craft({ params }: CraftProps) {
   }
 
   return (
-    <main className="w-full px-6 md:max-w-2xl">
+    <main className="w-full px-6 md:max-w-xl">
       <div>
         <div className="sticky z-20 pt-6 md:block">
           <DateTime date={craft.date} />
