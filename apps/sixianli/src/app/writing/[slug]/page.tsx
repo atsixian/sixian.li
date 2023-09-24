@@ -84,7 +84,7 @@ export default function Article({ params }: ArticleProps) {
 
           <Mdx code={article.body.code} />
 
-          <p className="prose mb-10 border-y border-dotted border-zinc-400 py-6 text-center font-sans dark:prose-invert md:p-8">
+          <p className="prose prose-zinc mb-10 border-y border-dotted border-zinc-400 py-6 text-center font-sans dark:prose-invert md:p-8">
             欢迎通过{' '}
             <NextLink href="https://twitter.com/noworkforsixian">
               Twitter
