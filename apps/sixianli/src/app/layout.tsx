@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import type { Metadata } from 'next'
 import Script from 'next/script'
-import { noto_sans_sc, noto_serif_sc, inter } from './fonts'
+import { lato } from './fonts'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -39,14 +39,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-US">
-      <body
-        className={clsx(
-          'bg-bg-color text-fg-color',
-          noto_serif_sc.variable,
-          noto_sans_sc.variable,
-          inter.variable
-        )}
-      >
+      <body className={clsx('bg-bg-color text-fg-color', lato.variable)}>
         <div
           aria-hidden
           className={clsx(
@@ -56,7 +49,7 @@ export default function RootLayout({
             'gradient-mask-b-0'
           )}
         />
-        <div className="flex h-full flex-col items-center justify-start font-serif md:relative md:flex-row md:items-start md:justify-center md:pb-12 md:pt-32">
+        <div className="flex h-full flex-col items-center justify-start font-sans md:relative md:flex-row md:items-start md:justify-center md:pb-12 md:pt-32">
           {children}
         </div>
         {process.env.NODE_ENV === 'production' && (
