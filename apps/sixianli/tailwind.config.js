@@ -30,6 +30,10 @@ module.exports = {
                 color: theme('colors.zinc[800]'),
               },
             },
+            em: {
+              fontFamily: 'var(--font-sentient)',
+              fontWeight: 350,
+            },
           },
         },
       }),

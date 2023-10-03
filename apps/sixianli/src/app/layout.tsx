@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import type { Metadata } from 'next'
 import Script from 'next/script'
-import { lato } from './fonts'
+import { lato, sentient } from './fonts'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -39,7 +39,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-US">
-      <body className={clsx('bg-bg-color text-fg-color', lato.variable)}>
+      <body
+        className={clsx(
+          'bg-bg-color text-fg-color',
+          lato.variable,
+          sentient.variable
+        )}
+      >
         <div
           aria-hidden
           className={clsx(
