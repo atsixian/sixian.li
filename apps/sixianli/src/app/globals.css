@@ -18,7 +18,7 @@
 
 @layer base {
   :root {
-    --bg-color: 255 255 255;
+    --bg-color: 253 253 253;
     --fg-color: theme(colors.zinc.700);
     --fg-hover-color: theme(colors.zinc.900);
     --fg-secondary-color: theme(colors.zinc.500);
@@ -66,17 +66,7 @@ html {
 }
 
 .prose pre {
-  @apply bg-neutral-50 dark:bg-neutral-800;
-}
-
-.prose a {
-  @apply underline-offset-[0.1em];
-  transition: text-underline-offset 300ms;
-}
-
-.prose a:hover {
-  @apply underline-offset-[0.15em] text-fg-hover-color;
-  transition: text-underline-offset 200ms;
+  @apply bg-zinc-100 dark:bg-zinc-800;
 }
 
 #blur-bar {

@@ -25,10 +25,17 @@ module.exports = {
           css: {
             a: {
               color: 'inherit',
+              textDecoration: 'underline',
+              textDecorationThickness: 'from-font',
+              textUnderlineOffset: '2px',
+              transition: 'all 250ms ease',
 
               '&:hover': {
-                color: theme('colors.zinc[800]'),
+                color: theme('colors.zinc[500]'),
               },
+            },
+            code: {
+              fontWeight: 'normal',
             },
             em: {
               fontFamily: 'var(--font-sentient)',
