@@ -18,7 +18,10 @@ export function Video({
         loop
         muted
         playsInline
-        className={clsx('m-0 rounded-md', className)}
+        className={clsx(
+          'm-0 rounded-md border border-zinc-300 dark:border-zinc-700',
+          className
+        )}
         style={style}
       >
         <source src={src} type="video/mp4" />

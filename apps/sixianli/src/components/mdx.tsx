@@ -34,10 +34,19 @@ function Link(
   )
 }
 
-function Image(props) {
+function Image(
+  props: ComponentProps<typeof NextImage> & {
+    aspectRatio?: number
+    objectFit?: React.CSSProperties['objectFit']
+  }
+) {
+  const { aspectRatio = 16 / 9, objectFit = 'contain' } = props
   return (
-    <div className="relative aspect-video w-full">
-      <NextImage fill className="m-0 object-contain" {...props} />
+    <div
+      className="relative w-full overflow-hidden rounded-md border border-zinc-300 dark:border-zinc-700"
+      style={{ aspectRatio }}
+    >
+      <NextImage fill className="m-0" style={{ objectFit }} {...props} />
     </div>
   )
 }

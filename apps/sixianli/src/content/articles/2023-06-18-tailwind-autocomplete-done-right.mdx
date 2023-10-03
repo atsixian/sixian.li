@@ -34,8 +34,8 @@ Open your settings.json, and the syntax is as follows:
 
 The regex can either be a string or an array, depending on whether you’re matching one or more class lists. Let’s define the terms:
 
-- A **class list** is a string containing Tailwind classes. For example, `'bg-black h-full text-sm'` is one class list.
-- A **container** contains one or more class lists.
+- A *classlist* is a string containing Tailwind classes. For example, `'bg-black h-full text-sm'` is one class list.
+- A *container* contains one or more class lists.
 
 ```typescript
 // container with only one class list
@@ -51,6 +51,7 @@ clsx('bg-black text-sm', 'h-full')
 Each regex must contain exactly one [capture group](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Capturing_group), and that’s where the autocomplete pops up.
 
 <Image
+  objectFit="fill"
   alt="class list illustration"
   src="/articles/tailwind-autocomplete/class-list-illustration.png"
 />
@@ -67,13 +68,6 @@ Say we want to have autocomplete in variable assignments for variables ending wi
   ]
 }
 ```
-
-With this line, you’ll see autocomplete start working immediately:
-
-<Image
-  alt="working for inline variables"
-  src="/articles/tailwind-autocomplete/tailwind-ex1-variable.png"
-/>
 
 To make it more flexible, we can ignore whitespaces and handle double quotes and backticks.
 
