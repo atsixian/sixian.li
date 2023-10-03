@@ -1,11 +1,12 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
-import rehypeKatex from 'rehype-katex'
-import remarkMath from 'remark-math'
-import rehypeSlug from 'rehype-slug'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypePrettyCode from 'rehype-pretty-code'
 import fs from 'fs'
 import path from 'path'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeKatex from 'rehype-katex'
+import rehypePrettyCode from 'rehype-pretty-code'
+import rehypeSlug from 'rehype-slug'
+import remarkMath from 'remark-math'
+import smartypants from 'remark-smartypants'
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
@@ -67,7 +68,7 @@ export default makeSource({
   contentDirPath: './src/content',
   documentTypes: [Article, Talk, Craft],
   mdx: {
-    remarkPlugins: [remarkMath],
+    remarkPlugins: [remarkMath, smartypants],
     rehypePlugins: [
       rehypeKatex,
       rehypeSlug,
