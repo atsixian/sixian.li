@@ -39,11 +39,12 @@ module.exports = {
             },
             em: {
               fontFamily: 'var(--font-sentient)',
-              fontWeight: 340,
+              fontWeight: 350,
             },
             blockquote: {
-              fontFamily: 'var(--font-sentient)',
-              fontWeight: 330,
+              fontStyle: 'normal',
+              fontWeight: 'normal',
+              color: 'var(--fg-color)',
             },
           },
         },

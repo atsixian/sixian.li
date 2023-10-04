@@ -43,7 +43,12 @@
 }
 
 html {
-  @apply scroll-pt-8 md:scroll-pt-14 scroll-smooth;
+  @apply scroll-pt-8 md:scroll-pt-14 scroll-smooth antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.prose-zinc {
+  --tw-prose-body: theme(colors.zinc.800);
 }
 
 .prose h2 a,

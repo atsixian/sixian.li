@@ -46,7 +46,12 @@ function Image(
       className="relative w-full overflow-hidden rounded-md border border-zinc-300 dark:border-zinc-700"
       style={{ aspectRatio }}
     >
-      <NextImage fill className="m-0" style={{ objectFit }} {...props} />
+      <NextImage
+        fill={!(props.width || props.height)}
+        className="m-0"
+        style={{ objectFit }}
+        {...props}
+      />
     </div>
   )
 }
@@ -64,7 +69,7 @@ export function Mdx({ code }: MdxProps) {
   const Component = useMDXComponent(code)
 
   return (
-    <article className="prose prose-zinc mb-10 max-w-none font-sans dark:prose-invert">
+    <article className="prose prose-zinc mb-10 font-sans dark:prose-invert">
       <Component components={components} />
     </article>
   )

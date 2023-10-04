@@ -64,13 +64,11 @@ export default function Article({ params }: ArticleProps) {
   }
 
   const headings = getHeadings(article.body.raw)
-  const maxWidth =
-    article.lang === 'en-US' ? 'md:max-w-2xl' : 'md:max-w-[650px]'
 
   return (
     <>
       <ToC headings={headings} />
-      <main className={clsx('w-full px-6 md:flex', maxWidth)}>
+      <main className={clsx('w-full px-6 md:flex md:max-w-2xl')}>
         <div className="m-auto">
           <div className="sticky z-20 pt-6 md:block">
             <DateTime date={article.date} />
