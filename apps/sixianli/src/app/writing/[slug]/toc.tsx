@@ -22,7 +22,7 @@ export function ToC({ headings }: TocProps) {
 
   return (
     <>
-      <nav className="sticky hidden overflow-y-scroll p-6 md:top-32 md:block md:w-32 lg:-ml-52 lg:w-52">
+      <nav className="sticky hidden overflow-y-scroll p-6 md:top-32 md:block md:w-32 md:overflow-hidden lg:-ml-52 lg:w-52">
         <Link href="/writing" className="group mb-12 flex items-center gap-1">
           <ArrowUpLeft
             size={16}
