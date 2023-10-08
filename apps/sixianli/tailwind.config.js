@@ -27,7 +27,7 @@ module.exports = {
               color: 'inherit',
               textDecoration: 'underline',
               textDecorationThickness: 'from-font',
-              textUnderlineOffset: '2px',
+              textUnderlinePosition: 'from-font',
               transition: 'all 250ms ease',
 
               '&:hover': {

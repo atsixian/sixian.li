@@ -1,4 +1,3 @@
-// import { Lato } from 'next/font/google'
 import localFont from 'next/font/local'
 
 export const sentient = localFont({
@@ -11,14 +10,5 @@ export const sentient = localFont({
 export const lato = localFont({
   src: './lato-regular.ttf',
   variable: '--font-lato',
-  display: 'swap',
-  weight: '400',
+  display: 'swap'
 })
-
-// export const lato = Lato({
-//   subsets: ['latin'],
-//   style: 'normal',
-//   display: 'swap',
-//   variable: '--font-lato',
-//   weight: ['100', '300', '400', '700']
-// })
