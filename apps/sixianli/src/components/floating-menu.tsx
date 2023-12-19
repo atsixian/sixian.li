@@ -1,7 +1,6 @@
 'use client'
 import type { Variants } from 'framer-motion'
 import { motion } from 'framer-motion'
-import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export function FloatingMenu({
@@ -12,11 +11,6 @@ export function FloatingMenu({
   icon: React.ReactNode
 }) {
   const [isOpen, setIsOpen] = useState(false)
-  const pathname = usePathname()
-
-  useEffect(() => {
-    setIsOpen(false)
-  }, [pathname])
 
   useEffect(() => {
     if (isOpen) {
