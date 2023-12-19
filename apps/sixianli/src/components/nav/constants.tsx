@@ -1,7 +1,7 @@
 import { Github, Mail, Rss, Twitter, Youtube } from 'lucide-react'
 import { MyEmail } from '../my-email'
 
-interface Link {
+export interface Link {
   node: React.ReactNode
   href: string
   ariaLabel?: string

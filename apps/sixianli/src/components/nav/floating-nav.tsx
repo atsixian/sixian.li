@@ -6,6 +6,7 @@ import NextLink from 'next/link'
 import { Moon } from '@/components/moon'
 import { FloatingMenu } from '../floating-menu'
 import { navItemVariants } from '../common'
+import type { Link } from './constants'
 import { NAV_LINKS, SOCIAL_LINKS } from './constants'
 
 const navIcon = (
@@ -47,15 +48,14 @@ const navIcon = (
 
 function NavItems() {
   const currentRoute = usePathname()
+  const navLinks: Link[] = [{ node: 'Home', href: '/' }, ...NAV_LINKS]
 
   return (
     <>
       <motion.li className="flex" variants={navItemVariants}>
-        <NextLink href="/" aria-label="home" className="m-auto">
-          <Moon />
-        </NextLink>
+        <Moon />
       </motion.li>
-      {NAV_LINKS.map(link => (
+      {navLinks.map(link => (
         <motion.li key={link.href} variants={navItemVariants}>
           <NextLink
             href={link.href}
@@ -83,6 +83,7 @@ function NavItems() {
     </>
   )
 }
+
 export function FloatingNav() {
   return (
     <FloatingMenu icon={navIcon}>
