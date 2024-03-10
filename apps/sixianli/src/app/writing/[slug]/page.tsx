@@ -72,12 +72,19 @@ export default function Article({ params }: ArticleProps) {
         <div className="m-auto">
           <div className="sticky z-20 pt-6 md:block">
             <DateTime date={article.date} />
-            <h1 className="mb-2 mt-1 text-3xl font-bold dark:text-white">
+            <h1
+              className={clsx(
+                'mt-1 text-3xl font-bold dark:text-white',
+                article.description ? 'mb-2' : 'mb-12'
+              )}
+            >
               <Balancer>{article.title}</Balancer>
             </h1>
-            <p className="mb-12 text-fg-secondary-color">
-              <Balancer>{article.description}</Balancer>
-            </p>
+            {article.description ? (
+              <p className="mb-12 text-fg-secondary-color">
+                <Balancer>{article.description}</Balancer>
+              </p>
+            ) : null}
           </div>
 
           <Mdx code={article.body.code} />
