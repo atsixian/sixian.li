@@ -61,7 +61,7 @@ export default function RootLayout({
         {process.env.NODE_ENV === 'production' && (
           <Script
             src="https://analytics.sixian.li/script.js"
-            data-website-id="12db5e3c-c469-4c99-a348-bc7acd4ac46d"
+            data-website-id="91e683bc-2350-4f92-865b-65aafaef97fb"
           />
         )}
       </body>
